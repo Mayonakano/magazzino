@@ -19,8 +19,6 @@ public class Product {
     private int quantity;
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name= "subcategory_id",nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private Warehouse warehouse;
     private Subcategory subcategory;
 
     public void setId(long id) {
@@ -45,14 +43,6 @@ public class Product {
 
     public void setSubcategory(Subcategory subcategory) {
         this.subcategory = subcategory;
-    }
-
-    public Warehouse getWarehouse() {
-        return warehouse;
-    }
-
-    public void setWarehouse(Warehouse warehouse) {
-        this.warehouse = warehouse;
     }
 
     public long getId() {

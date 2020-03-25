@@ -48,14 +48,14 @@ public class ProductController {
         Product newProduct = new Product();
         newProduct.setSubcategory(new Subcategory());
         model.addAttribute("newProduct", newProduct);
-        model.addAttribute("categories", SubcategoryService.subcategories());
+        model.addAttribute("subcategories", subcategoryService.subcategories());
         return "newProduct";
     }
 
      @PostMapping("/newproduct")
      public String addOne(@ModelAttribute Product newProduct, Model model) {
-             Subcategory Subcategory = SubcategoryService.category(newProduct.getSubcategory().getId()).orElse(null);
-             newProduct.setSubcategory(Subcategory);
+             Subcategory subcategory = subcategoryService.subcategory(newProduct.getSubcategory().getId()).orElse(null);
+             newProduct.setSubcategory(subcategory);
              service.addProduct(newProduct);
          model.addAttribute("products", service.products());
          return products(model);
@@ -74,7 +74,7 @@ public class ProductController {
          if (p == null)
              return "paginaErrore";
          model.addAttribute("editProduct", editProduct);
-         model.addAttribute("categories", categoryService.categories());
+         model.addAttribute("subcategories", subcategoryService.subcategories());
          return "editProduct";
      }
 
