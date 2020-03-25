@@ -9,15 +9,15 @@
     <a th:href="@{/magazzino}"> <button>Home</button>
     </a>
     <form th:action="@{/magazzino/newproduct}" method="post" th:object="${newProduct}">
-        <p>Nome: <input type="text" th:field="${newProduct.name}" required="required"></p>
-        <p>Categoria: </p>
+        <p>Nome: <input type="text" th:field="${newProduct.name}" required="required"></p> Sottocategoria:
         <select th:field="*{subcategory.id}">
         <option th:each="subcate : ${subcategories}" th:value="${subcate.id}" th:text="${subcate.name}" required="required"></option>
         </select> <br>
         <p>Piccola Descrizione:</p>
-        <textarea id="${newProduct.shortDescription}" cols="40" rows="10" required="required"></textarea>
+        <input th:field="${newProduct.shortDescription}" th:value="${newProduct.shortDescription}" required="required"> <br>
         <p>Prezzo Base: <input type="text" th:field="${newProduct.basePrice}" required="required"></p>
-        <p>Quantità: <input type="number" th:field="${newProduct.quantity}" required></p>
+        <p>Quantità: <input type="number" th:field="${newProduct.quantity}" required="required"></p>
+        <br>
         <button type="submit">Aggiungi Prodotto</button>
     </form>
 </body>

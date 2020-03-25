@@ -11,15 +11,15 @@
     <form th:action="@{/magazzino/editproduct}" method="post" th:object="${editProduct}">
     <input type="hidden" th:field="${editProduct.id}">
     <p>Nome:</p> <br>
-    <input type="text" th:field="${editProduct.name}" th:value="${editProduct.name}"> <br>
-    <p>Categoria:</p>
+    <input type="text" th:field="${editProduct.name}" th:value="${editProduct.name}" required="required"> <br>
+    <p>Sottocategoria:</p>
     <select th:field="*{category.id}">
-    <option th:each="cate : ${categories}" th:value="${cate.id}" th:text="${cate.name}"></option>
+    <option th:each="cate : ${categories}" th:value="${cate.id}" th:text="${cate.name}" required="required"></option>
     </select> <br>
     <p>Descrizione Prodotto:</p> <br>
-    <textarea id="${editProduct.shortDescription}" th.value="${editProduct.shortDescription}"cols="40" rows="10"></textarea><br>
-    <p>Prezzo Base: <input type="text" th:value="${editProduct.basePrice}"th:field="${editProduct.basePrice}"></p> <br>
-    <p>Quantità: <input type="number" th:value="${editProduct.quantity}" th:field="${editProduct.quantity}"></p> <br>
+    <textarea id="${editProduct.shortDescription}" th.value="${editProduct.shortDescription}"cols="40" rows="10" required="required"></textarea><br>
+    <p>Prezzo Base: <input type="text" th:value="${editProduct.basePrice}"th:field="${editProduct.basePrice}" required="required"></p> <br>
+    <p>Quantità: <input type="number" th:value="${editProduct.quantity}" th:field="${editProduct.quantity}" required="required"></p> <br>
     <button type="submit" >Conferma la Modifica</button>
     </form>
 </body>

@@ -41,7 +41,11 @@ public class SubcategoryController {
     public String addOne(@ModelAttribute Subcategory newSubcategory, Model model) {
         Category category = cateService.category(newSubcategory.getCategory().getId()).orElse(null);
         newSubcategory.setCategory(category);
-        subService.addSubcategory(newSubcategory);
+        if(newSubcategory.getName()!= null && newSubcategory.getCategory()!=null && newSubcategory.getDescription()!=null) {
+            subService.addSubcategory(newSubcategory);
+        } else {
+            return "paginaErrore";
+        }
         model.addAttribute("subcategories", subService.subcategories());
         return subcategories(model);
     }
@@ -58,7 +62,11 @@ public class SubcategoryController {
     @PostMapping("/savesubcategory")
     public String saveSubcategoty (@ModelAttribute Subcategory saveSubcategory, Model model) {
         Subcategory s = saveSubcategory;
-        subService.updateSubcategory(s);
+        if(s.getName()!=null && s.getDescription()!=null && s.getCategory()!=null) {
+            subService.updateSubcategory(s);
+        } else {
+            return "paginaErrore";
+        }
         return subcategories(model);
     }
 
