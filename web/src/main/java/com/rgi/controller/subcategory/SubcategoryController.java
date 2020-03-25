@@ -2,6 +2,7 @@ package com.rgi.controller.subcategory;
 
 import com.rgi.model.category.Category;
 import com.rgi.model.subcategory.Subcategory;
+import com.rgi.service.category.CategoryService;
 import com.rgi.service.subcategory.SubcategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,54 +16,60 @@ import java.util.Optional;
 @RequestMapping("/magazzino")
 public class SubcategoryController {
     @Autowired
-    private SubcategoryService subservice;
+    private SubcategoryService subService;
+    @Autowired
+    private CategoryService cateService;
 
     @GetMapping("/subcategories")
     public String subcategories (Model model) {
-        List<Subcategory>listasubcategories = (List<Subcategory>)subservice.subcategories();
+        List<Subcategory>listasubcategories = (List<Subcategory>)subService.subcategories();
         model.addAttribute("subcategories", listasubcategories);
         return "subcategories";
     }
 
+    @GetMapping("/subcategory")
+    public String subcategory (long id, Model model) {
+        Subcategory subcategorySelected = subService.subcategory(id).orElse(null);
+        model.addAttribute("subcategory", subcategorySelected);
+        return "subcategory";
+    }
+
     @GetMapping("/addsubcategory")
     public String newSubcategory(Model model) {
+        Subcategory subcategory = new Subcategory();
+        subcategory.setCategory(new Category());
         model.addAttribute("newSubcategory", new Subcategory());
+        model.addAttribute("categories", cateService.categories());
         return "newSubcategory";
     }
 
     @PostMapping("/newsubcategory")
     public String addOne(@ModelAttribute Subcategory newSubcategory, Model model) {
-        if (subservice.subcategories().contains(newSubcategory)) {
-            return "paginaErrore";
-        } else {
-            subservice.addSubcategory(newSubcategory);
-        }
+        Category category = cateService.category(newSubcategory.getCategory().getId()).orElse(null);
+        newSubcategory.setCategory(category);
+        subService.addSubcategory(newSubcategory);
+        model.addAttribute("products", subService.subcategories());
         return subcategories(model);
     }
 
     @GetMapping("/editsubcategory/{id}")
     public String editSubcategory(@PathVariable long id, @ModelAttribute Subcategory editSubcategory, Model model) {
-        Optional<Subcategory> s = subservice.subcategory(id);
-        if (s == null)
-            return "paginaErrore";
+        Optional<Subcategory> s = subService.subcategory(id);
         model.addAttribute("editSubcategory", editSubcategory);
+        model.addAttribute("categories", cateService.categories());
         return "editSubcategory";
     }
 
-    @PostMapping("/savesubcategory")
+    @PostMapping("/editsubcategory")
     public String saveSubcategoty (@ModelAttribute Subcategory saveSubcategory, Model model) {
         Subcategory s = saveSubcategory;
-        if(s == null) {
-            return "paginaErrore";
-        } else {
-            subservice.updateSubcategory(s);
-        }
+        subService.updateSubcategory(s);
         return subcategories(model);
     }
 
     @GetMapping("/deletesubcategory/{id}")
     public String deleteOne(@PathVariable long id, Model model) {
-        subservice.deleteSubcategory(id);
+        subService.deleteSubcategory(id);
         return subcategories(model);
     }
 

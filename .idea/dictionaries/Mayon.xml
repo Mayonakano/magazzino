@@ -3,7 +3,9 @@
     <words>
       <w>addcategory</w>
       <w>deletecategory</w>
+      <w>descrizione</w>
       <w>editcategory</w>
+      <w>subcate</w>
     </words>
   </dictionary>
 </component>
