@@ -1,6 +1,7 @@
 package com.rgi.controller.subcategory;
 
 import com.rgi.model.category.Category;
+import com.rgi.model.product.Product;
 import com.rgi.model.subcategory.Subcategory;
 import com.rgi.service.category.CategoryService;
 import com.rgi.service.subcategory.SubcategoryService;
@@ -36,17 +37,19 @@ public class SubcategoryController {
 
     @GetMapping("/addsubcategory")
     public String newSubcategory(Model model) {
+        Subcategory newSubcategory = new Subcategory();
+        newSubcategory.setCategory(new Category());
         model.addAttribute("newSubcategory", new Subcategory());
+        model.addAttribute("categories", cateService.categories());
         return "newSubcategory";
     }
 
     @PostMapping("/newsubcategory")
     public String addOne(@ModelAttribute Subcategory newSubcategory, Model model) {
-        if (subService.subcategories().contains(newSubcategory)) {
-            return "paginaErrore";
-        } else {
-            subService.addSubcategory(newSubcategory);
-        }
+        Category category = cateService.category(newSubcategory.getCategory().getId()).orElse(null);
+        newSubcategory.setCategory(category);
+        subService.addSubcategory(newSubcategory);
+        model.addAttribute("subcategories", subService.subcategories());
         return subcategories(model);
     }
 
@@ -55,6 +58,7 @@ public class SubcategoryController {
         Optional<Subcategory> s = subService.subcategory(id);
         model.addAttribute("editSubcategory", editSubcategory);
         model.addAttribute("categories", cateService.categories());
+
         return "editSubcategory";
     }
 

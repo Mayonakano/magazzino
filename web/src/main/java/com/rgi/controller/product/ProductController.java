@@ -46,7 +46,7 @@ public class ProductController {
         Product newProduct = new Product();
         newProduct.setSubcategory(new Subcategory());
         model.addAttribute("newProduct", newProduct);
-        model.addAttribute("categories", subcategoryService.subcategories());
+        model.addAttribute("subcategories", subcategoryService.subcategories());
         return "newProduct";
     }
 

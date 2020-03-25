@@ -11,11 +11,11 @@
     <form th:action="@{/magazzino/newproduct}" method="post" th:object="${newProduct}">
         <p>Nome: <input type="text" th:field="${newProduct.name}" required="required"></p>
         <p>Categoria: </p>
-        <select th:field="*{category.id}">
-        <option th:each="cate : ${categories}" th:value="${cate.id}" th:text="${cate.name}" required="required"></option>
+        <select th:field="*{subcategory.id}">
+        <option th:each="subcate : ${subcategories}" th:value="${subcate.id}" th:text="${subcate.name}" required="required"></option>
         </select> <br>
         <p>Piccola Descrizione:</p>
-        <textarea th:field="${newProduct.shortDescription}" cols="40" rows="10" required="required"></textarea>
+        <textarea id="${newProduct.shortDescription}" cols="40" rows="10" required="required"></textarea>
         <p>Prezzo Base: <input type="text" th:field="${newProduct.basePrice}" required="required"></p>
         <p>Quantità: <input type="number" th:field="${newProduct.quantity}" required></p>
         <button type="submit">Aggiungi Prodotto</button>
