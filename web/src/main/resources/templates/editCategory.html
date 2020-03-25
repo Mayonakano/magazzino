@@ -6,6 +6,8 @@
 </head>
 <body>
 <h1>Modifica qui la tua Categoria</h1>
+    <a th:href="@{/magazzino}"> <button>Home</button>
+    </a>
 <br>
 <br>
 <form th:action="@{/magazzino/savecategory}" method="post" th:object="${editCategory}">

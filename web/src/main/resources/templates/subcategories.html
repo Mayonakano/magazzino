@@ -12,14 +12,9 @@
 <ul>
     <li th:each="subcategory : ${subcategories}">
         <p>Id: <span th:text="${subcategory.id}"></span></p>
-        <p>Nome:
-            <a th:href="@{/magazzino/subcategory/{id}(id=${subcategory.id})}">
-            <span th:text="${subcategory.name}"></span>
-            </a>
-        </p>
-        <p>
-            <span th:text="${subcategory.description}"></span>
-        </p>
+        <p>Nome: <span th:text="${subcategory.name}"></span> </p>
+        <p>Descrizione: <span th:text="${subcategory.description}"></span></p>
+        <br>
         <a th:href="@{/magazzino/deletesubcategory/{id}(id=${subcategory.id})}">
             <button>Elimina</button>
         </a>

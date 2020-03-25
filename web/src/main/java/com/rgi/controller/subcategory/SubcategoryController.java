@@ -28,13 +28,6 @@ public class SubcategoryController {
         return "subcategories";
     }
 
-    @GetMapping("/subcategory")
-    public String subcategory (long id, Model model) {
-        Subcategory subcategorySelected = subService.subcategory(id).orElse(null);
-        model.addAttribute("subcategory", subcategorySelected);
-        return "subcategory";
-    }
-
     @GetMapping("/addsubcategory")
     public String newSubcategory(Model model) {
         Subcategory newSubcategory = new Subcategory();
