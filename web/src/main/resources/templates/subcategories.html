@@ -13,7 +13,9 @@
     <li th:each="subcategory : ${subcategories}">
         <p>Id: <span th:text="${subcategory.id}"></span></p>
         <p>Nome:
-        <span th:text="${subcategory.name}"></span>
+            <a th:href="@{/magazzino/subcategory/{id}(id=${subcategory.id})}">
+            <span th:text="${subcategory.name}"></span>
+            </a>
         </p>
         <p>
             <span th:text="${subcategory.description}"></span>
