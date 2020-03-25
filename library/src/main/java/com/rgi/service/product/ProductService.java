@@ -28,10 +28,16 @@ public class ProductService {
     }
 
     public void addProduct(Product product) {
-
-        repository.save(product);
+        List<Product> productsList = (List<Product>) products();
+        for (Product p : productsList) {
+            if (p.getName().equalsIgnoreCase(product.getName()) && p.getBasePrice().equals(product.getBasePrice())) {
+                p.setQuantity(p.getQuantity() + product.getQuantity());
+                break;
+            } else {
+                repository.save(product);
+            }
+        }
     }
-
     public void updateProduct(Product product) {
         Optional<Product> toDelete = product(product.getId());
         toDelete.ifPresent(c -> repository.save(product));
