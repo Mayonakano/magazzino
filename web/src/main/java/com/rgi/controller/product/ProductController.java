@@ -1,9 +1,7 @@
 package com.rgi.controller.product;
 
-import com.rgi.model.category.Category;
 import com.rgi.model.product.Product;
 import com.rgi.model.subcategory.Subcategory;
-import com.rgi.service.category.CategoryService;
 import com.rgi.service.product.ProductService;
 import com.rgi.service.subcategory.SubcategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +30,7 @@ public class ProductController {
      }
      @GetMapping("/products")
      public String products(Model model) {
-         List<Product> productsList = new ArrayList<Product>();
-         productsList = (List<Product>)service.products();
+         List<Product> productsList = (List<Product>)service.products();
        model.addAttribute("products",productsList );
        return "products";
      }
@@ -71,8 +68,6 @@ public class ProductController {
      @GetMapping("/editproduct/{id}")
      public String editProduct (@PathVariable long id, @ModelAttribute Product editProduct, Model model) {
          Optional<Product> p = service.product(id);
-         if (p == null)
-             return "paginaErrore";
          model.addAttribute("editProduct", editProduct);
          model.addAttribute("subcategories", subcategoryService.subcategories());
          return "editProduct";

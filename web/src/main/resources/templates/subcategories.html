@@ -15,11 +15,14 @@
         <p>Nome:
         <span th:text="${subcategory.name}"></span>
         </p>
+        <p>
+            <span th:text="${subcategory.description}"></span>
+        </p>
         <a th:href="@{/magazzino/deletesubcategory/{id}(id=${subcategory.id})}">
             <button>Elimina</button>
         </a>
         <a th:href="@{/magazzino/editsubcategory/{id}(id=${subcategory.id})}">
-
+            <button>Modifica</button>
         </a>
     </li>
 </ul>

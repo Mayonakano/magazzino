@@ -1,11 +1,6 @@
 package com.rgi.model.product;
 
-import com.rgi.model.category.Category;
 import com.rgi.model.subcategory.Subcategory;
-import com.rgi.model.warehouse.Warehouse;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 import javax.persistence.*;
 @Entity
 public class Product {
