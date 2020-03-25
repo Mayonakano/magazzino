@@ -9,15 +9,18 @@
 </a>
 <ul>
     <li th:each="product : ${products}"> Nome :
-        <span th:text="${product.name}"></span>
-        <p>Sottocategoria: </p> Nome sottocategoria:
+        <span th:text="${product.name}"></span> <br> <br>
+        <span>Sottocategoria:</span>
+        <br> Nome sottocategoria:
         <span th:text="${product.subcategory.name}"></span> <br> Descrizione sottocategoria:
         <span th:text="${product.subcategory.description}"></span> <br> Nome categoria:
         <span th:text="${product.subcategory.category.name}"></span> <br> Tassa categoria:
-        <span th:text="${product.subcategory.category.tax}"></span> <br> Prezzo :
+        <span th:text="${product.subcategory.category.tax}"></span> <br>
+        <br> Prezzo :
         <span th:text="${product.basePrice}"></span> <br> Descrizione:
         <span th:text="${product.shortDescription}"></span> <br> Quantità:
         <span th:text="${product.quantity}"></span>
+        <br>
         <br>
         <a th:href="@{/magazzino/deleteproduct/{id}(id=${product.id})}">
             <button>Elimina</button>
