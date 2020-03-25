@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Magazzino MVC</title>
+</head>
+<body>
+    <h1>Modifica qui il tuo prodotto</h1>
+    <br>
+    <br>
+    <form th:action="@{/magazzino/editproduct}" method="post" th:object="${editProduct}">
+    <input type="hidden" th:field="${editProduct.id}">
+    <p>Nome:</p> <br>
+    <input type="text" th:field="${editProduct.name}" th:value="${editProduct.name}"> <br>
+    <p>Categoria:</p>
+    <select th:field="*{category.id}">
+    <option th:each="cate : ${categories}" th:value="${cate.id}" th:text="${cate.name}"></option>
+    </select> <br>
+    <p>Descrizione Prodotto:</p> <br>
+    <textarea id="${editProduct.shortDescription}" th.value="${editProduct.shortDescription}"cols="40" rows="10"></textarea><br>
+    <p>Prezzo Base: <input type="text" th:value="${editProduct.basePrice}"th:field="${editProduct.basePrice}"></p> <br>
+    <p>Quantità: <input type="number" th:value="${editProduct.quantity}" th:field="${editProduct.quantity}"></p> <br>
+    <button type="submit" >Conferma la Modifica</button>
+    </form>
+</body>
+</html>

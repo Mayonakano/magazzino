@@ -1,0 +1,32 @@
+<html>
+<head>
+    <title>Magazzino MVC</title>
+</head>
+
+<body>
+<h1>Lista Prodotti</h1>
+    <a th:href="@{/magazzino}"> <button>Home</button>
+    </a>
+<ul>
+    <li th:each="product : ${products}"> Nome :
+        <span th:text="${product.name}"></span>
+        <h4>Categoria: </h4> <br> Id Categoria:
+        <span th:text="${product.category.id}"></span> <br> Nome Categoria:
+        <span th:text="${product.category.name}"></span> <br> Tassa di Categoria:
+        <span th:text="${product.category.tax}"></span> <br> Prezzo :
+        <span th:text="${product.basePrice}"></span> <br> Descrizione:
+        <span th:text="${product.shortDescription}"></span> <br> Quantità:
+        <span th:text="${product.quantity}"></span>
+        <br>
+        <a th:href="@{/magazzino/deleteproduct/{id}(id=${product.id})}">
+            <button>Elimina</button>
+        </a>
+        <a th:href="@{/magazzino/editproduct/{id}(id=${product.id})}">
+            <button>Modifica</button>
+       </a>
+        <br>
+        <br>
+    </li>
+</ul>
+</body>
+</html>

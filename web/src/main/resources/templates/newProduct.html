@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Magazzino MVC</title>
+</head>
+<body>
+    <h1>Inserisci il nuovo prodotto</h1>
+    <a th:href="@{/magazzino}"> <button>Home</button>
+    </a>
+    <form th:action="@{/magazzino/newproduct}" method="post" th:object="${newProduct}">
+        <p>Nome: <input type="text" th:field="${newProduct.name}" required="required"></p>
+        <p>Categoria: </p>
+        <select th:field="*{category.id}">
+        <option th:each="cate : ${categories}" th:value="${cate.id}" th:text="${cate.name}" required="required"></option>
+        </select> <br>
+        <p>Piccola Descrizione:</p>
+        <textarea th:field="${newProduct.shortDescription}" cols="40" rows="10" required="required"></textarea>
+        <p>Prezzo Base: <input type="text" th:field="${newProduct.basePrice}" required="required"></p>
+        <p>Quantità: <input type="number" th:field="${newProduct.quantity}" required></p>
+        <button type="submit">Aggiungi Prodotto</button>
+    </form>
+</body>
+</html>

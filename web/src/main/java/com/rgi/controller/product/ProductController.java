@@ -1,0 +1,87 @@
+package com.rgi.controller.product;
+
+import com.rgi.model.category.Category;
+import com.rgi.model.product.Product;
+import com.rgi.model.subcategory.Subcategory;
+import com.rgi.service.category.CategoryService;
+import com.rgi.service.product.ProductService;
+import com.rgi.service.subcategory.SubcategoryService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+@Controller
+@RequestMapping("/magazzino")
+public class ProductController {
+
+     @Autowired
+     private ProductService service;
+
+     @Autowired
+     private SubcategoryService subcategoryService;
+
+     @GetMapping
+     public String home(Model model) {
+         model.addAttribute("home", model);
+         return "home";
+     }
+     @GetMapping("/products")
+     public String products(Model model) {
+         List<Product> productsList = new ArrayList<Product>();
+         productsList = (List<Product>)service.products();
+       model.addAttribute("products",productsList );
+       return "products";
+     }
+     @GetMapping("/product/{id}")
+     public String product(Model model, long id) {
+         Optional<Product> product = service.product(id);
+         model.addAttribute("product",product);
+         return "product";
+     }
+     @GetMapping("/addproduct")
+     public String newProduct(Model model) {
+        Product newProduct = new Product();
+        newProduct.setSubcategory(new Subcategory());
+        model.addAttribute("newProduct", newProduct);
+        model.addAttribute("categories", SubcategoryService.subcategories());
+        return "newProduct";
+    }
+
+     @PostMapping("/newproduct")
+     public String addOne(@ModelAttribute Product newProduct, Model model) {
+             Subcategory Subcategory = SubcategoryService.category(newProduct.getSubcategory().getId()).orElse(null);
+             newProduct.setSubcategory(Subcategory);
+             service.addProduct(newProduct);
+         model.addAttribute("products", service.products());
+         return products(model);
+     }
+
+     @GetMapping("/deleteproduct/{id}")
+        public String deleteOne(@PathVariable long id, Model model) {
+        service.deleteProduct(id);
+        model.addAttribute("products", service.products());
+        return products(model);
+     }
+
+     @GetMapping("/editproduct/{id}")
+     public String editProduct (@PathVariable long id, @ModelAttribute Product editProduct, Model model) {
+         Optional<Product> p = service.product(id);
+         if (p == null)
+             return "paginaErrore";
+         model.addAttribute("editProduct", editProduct);
+         model.addAttribute("categories", categoryService.categories());
+         return "editProduct";
+     }
+
+     @PostMapping("/editproduct")
+     public String saveEditProduct (@ModelAttribute Product newProduct, Model model) {
+        service.updateProduct(newProduct);
+        return products(model);
+     }
+
+}

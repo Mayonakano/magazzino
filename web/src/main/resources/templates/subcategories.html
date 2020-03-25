@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Magazzino MVC</title>
+</head>
+<body>
+    <h1>Subcategories</h1>
+    <a th:href="@{/magazzino}">
+        <button>Home</button>
+    </a>
+<ul>
+    <li th:each="subcategory : ${subcategories}">
+        <p>Id: <span th:text="${subcategory.id}"></span></p>
+        <p>Nome:
+        <span th:text="${subcategory.name}"></span>
+        </p>
+        <a th:href="@{/magazzino/deletesubcategory/{id}(id=${subcategory.id})}">
+            <button>Elimina</button>
+        </a>
+        <a th:href="@{/magazzino/editsubcategory/{id}(id=${subcategory.id})}">
+
+        </a>
+    </li>
+</ul>
+</body>
+</html>

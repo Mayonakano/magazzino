@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Magazzino MVC</title>
+</head>
+<body>
+<h1>Modifica qui la tua Categoria</h1>
+<br>
+<br>
+<form th:action="@{/magazzino/savecategory}" method="post" th:object="${editCategory}">
+    <input type="hidden" th:field="${editCategory.id}">
+    <p>Nome:</p><br>
+    <input type="text" th:field="${editCategory.name}"><br>
+    <p>Tassa:</p><br>
+    <input type="text" th:field="${editCategory.tax}"><br>
+    <button type="submit" >Conferma la Modifica</button>
+</form>
+</body>
+</html>

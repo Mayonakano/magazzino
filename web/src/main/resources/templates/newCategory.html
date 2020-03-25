@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Magazzino MVC</title>
+</head>
+<body>
+    <h1>Inserisci qui la nuova Categoria</h1>
+    <a th:href="@{/magazzino}"> <button>Home</button>
+    </a>
+    <form th:action="@{/magazzino/newcategory}" method="post" th:object="${newCategory}">
+    <h4>Nome: <input type="text" th:field="${newCategory.name}" required="required"> </h4>
+    <p>Tasso: <input type="number" th:field="${newCategory.tax}" required="required"> </p>
+    <button type="submit">Aggiungi Categoria</button>
+    </form>
+</body>
+</html>
