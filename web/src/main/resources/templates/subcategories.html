@@ -13,7 +13,7 @@
     <li th:each="subcategory : ${subcategories}">
         <p>Id: <span th:text="${subcategory.id}"></span></p>
         <p>Nome:
-        <span th:text="${subcategory.name}"></span>
+        <span th:text="${subcategory.name}" th:href="@{/magazzino/subcategory/{id}(id=${subcategory.id})}"></span>
         </p>
         <a th:href="@{/magazzino/deletesubcategory/{id}(id=${subcategory.id})}">
             <button>Elimina</button>
