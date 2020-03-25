@@ -1,7 +1,5 @@
 package com.rgi.model.category;
 
-
-import com.rgi.model.subcategory.Subcategory;
 import javax.persistence.*;
 
 @Entity
@@ -11,7 +9,6 @@ public class Category {
     private long id;
     private String name;
     private float tax;
-    private Subcategory subcategory;
 
     public long getId() {
         return id;
@@ -37,11 +34,4 @@ public class Category {
         this.tax = tax;
     }
 
-    public Subcategory getSubcategory() {
-        return subcategory;
-    }
-
-    public void setSubcategory(Subcategory subcategory) {
-        this.subcategory = subcategory;
-    }
 }

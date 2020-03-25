@@ -1,8 +1,7 @@
 package com.rgi.model.product;
 
-import com.rgi.model.category.Category;
+
 import com.rgi.model.subcategory.Subcategory;
-import com.rgi.model.warehouse.Warehouse;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -20,7 +19,6 @@ public class Product {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name= "subcategory_id",nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private Warehouse warehouse;
     private Subcategory subcategory;
 
     public void setId(long id) {
@@ -45,14 +43,6 @@ public class Product {
 
     public void setSubcategory(Subcategory subcategory) {
         this.subcategory = subcategory;
-    }
-
-    public Warehouse getWarehouse() {
-        return warehouse;
-    }
-
-    public void setWarehouse(Warehouse warehouse) {
-        this.warehouse = warehouse;
     }
 
     public long getId() {

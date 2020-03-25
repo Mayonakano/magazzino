@@ -5,6 +5,4 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.Collection;
 
 public interface ProductRepository extends CrudRepository<Product,Long> {
-
-    Collection<? extends Product> findByCategoryId(long categoryId);
 }
