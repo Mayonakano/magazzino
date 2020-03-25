@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Magazzino MVC</title>
+</head>
+<body>
+    <h1> Dettaglio Sottocategoria</h1>
+    <p>Nome: <span th:text="${subcategory.name}"></span></p>
+    <br>
+    <p>Descrizione: <span th:text="${subcategory.description}"></span></p>
+    <br>
+    <p>Categoria: </p>
+    <p>ID categoria: <span th:text="${subcategory.category.id}"></span></p>
+    <p>Nome categoria: <span th:text="${subcategory.category.name}"></span></p>
+    <p>Tassa: <span th:text="${subcategory.category.tax}"></span></p>
+</body>
+</html>
