@@ -34,7 +34,7 @@ public class CategoryController {
 
     @PostMapping("/newcategory")
     public String addOne(@ModelAttribute Category newCategory, Model model) {
-            if (categoryService.categories().contains(newCategory)) {
+            if (categoryService.categories().contains(newCategory) || newCategory.getName()!=null && newCategory.getTax()>=0) {
                 return "paginaErrore";
             } else {
                 categoryService.addCategory(newCategory);
@@ -54,10 +54,10 @@ public class CategoryController {
     @PostMapping("/savecategory")
     public String saveCategory (@ModelAttribute Category saveCategory, Model model) {
         Category c = saveCategory;
-        if(c == null) {
-            return "paginaErrore";
-        } else {
+        if(c.getName()!=null && c.getTax()>=0) {
             categoryService.updateCategory(c);
+        } else {
+            return "paginaErrore";
         }
         return categories(model);
     }
