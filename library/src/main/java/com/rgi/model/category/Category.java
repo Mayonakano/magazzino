@@ -1,7 +1,5 @@
 package com.rgi.model.category;
 
-
-import com.rgi.model.subcategory.Subcategory;
 import javax.persistence.*;
 
 @Entity

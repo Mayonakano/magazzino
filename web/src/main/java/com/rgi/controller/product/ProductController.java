@@ -30,7 +30,8 @@ public class ProductController {
      }
      @GetMapping("/products")
      public String products(Model model) {
-         List<Product> productsList = (List<Product>)service.products();
+         List<Product> productsList = new ArrayList<Product>();
+         productsList = (List<Product>)service.products();
        model.addAttribute("products",productsList );
        return "products";
      }
@@ -45,7 +46,7 @@ public class ProductController {
         Product newProduct = new Product();
         newProduct.setSubcategory(new Subcategory());
         model.addAttribute("newProduct", newProduct);
-        model.addAttribute("subcategories", subcategoryService.subcategories());
+        model.addAttribute("categories", subcategoryService.subcategories());
         return "newProduct";
     }
 
@@ -68,8 +69,10 @@ public class ProductController {
      @GetMapping("/editproduct/{id}")
      public String editProduct (@PathVariable long id, @ModelAttribute Product editProduct, Model model) {
          Optional<Product> p = service.product(id);
+         if (p == null)
+             return "paginaErrore";
          model.addAttribute("editProduct", editProduct);
-         model.addAttribute("subcategories", subcategoryService.subcategories());
+         model.addAttribute("categories", subcategoryService.subcategories());
          return "editProduct";
      }
 
