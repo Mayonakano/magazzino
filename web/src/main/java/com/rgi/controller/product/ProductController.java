@@ -53,11 +53,17 @@ public class ProductController {
      public String addOne(@ModelAttribute Product newProduct, Model model) {
              Subcategory subcategory = subcategoryService.subcategory(newProduct.getSubcategory().getId()).orElse(null);
              newProduct.setSubcategory(subcategory);
-             if(newProduct.getName()!=null && newProduct.getSubcategory()!=null
+             for(int i=0; i<service.products().size(); i++) {
+                if(service.products().contains(newProduct)) {
+                    service.product(i).get().setQuantity(service.product(i).get().getQuantity() + newProduct.getQuantity());
+                    break;
+                } else if (newProduct.getName()!=null && newProduct.getSubcategory()!=null
                      && newProduct.getShortDescription()!=null && newProduct.getBasePrice()!=null && newProduct.getQuantity()!=0) {
-                 service.addProduct(newProduct);
-             } else {
-                 return "paginaErrore";
+                service.addProduct(newProduct);
+                    break;
+                } else {
+                    return "paginaErrore";
+                 }
              }
          model.addAttribute("products", service.products());
          return products(model);
@@ -80,12 +86,18 @@ public class ProductController {
 
      @PostMapping("/editproduct")
      public String saveEditProduct (@ModelAttribute Product newProduct, Model model) {
-        if(newProduct.getName()!=null && newProduct.getSubcategory()!=null
-                && newProduct.getShortDescription()!=null && newProduct.getBasePrice()!=null && newProduct.getQuantity()!=0) {
-            service.updateProduct(newProduct);
-        } else {
-            return "paginaErrore";
-        }
-        return products(model);
+         for (int i = 0; i < service.products().size(); i++) {
+             if (service.product(i).equals(newProduct)) {
+                 service.product(i).get().setQuantity(service.product(i).get().getQuantity() + newProduct.getQuantity());
+                 break;
+             } else if (newProduct.getName() != null && newProduct.getSubcategory() != null
+                     && newProduct.getShortDescription() != null && newProduct.getBasePrice() != null && newProduct.getQuantity() != 0) {
+                 service.updateProduct(newProduct);
+                 break;
+             } else {
+                 return "paginaErrore";
+             }
+         }
+         return products(model);
      }
 }
