@@ -34,10 +34,10 @@ public class CategoryController {
 
     @PostMapping("/newcategory")
     public String addOne(@ModelAttribute Category newCategory, Model model) {
-            if (categoryService.categories().contains(newCategory) || newCategory.getName()!=null && newCategory.getTax()>=0) {
-                return "paginaErrore";
-            } else {
+            if (newCategory.getName()!=null && newCategory.getTax()>=0) {
                 categoryService.addCategory(newCategory);
+            } else  {
+                return "paginaErrore";
             }
         return categories(model);
     }
