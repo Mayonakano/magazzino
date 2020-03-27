@@ -18,7 +18,7 @@
         <p>Prezzo Base: <input type="text" th:field="${newProduct.basePrice}" required="required"></p>
         <p>Quantità: <input type="number" th:field="${newProduct.quantity}" required="required"></p>
         <br>
-        <button type="submit">Aggiungi Prodotto</button>
+        <button type="submit" onclick="return confirm('Sei sicuro/a di volerlo aggiungere?')">Aggiungi Prodotto</button>
     </form>
 </body>
 </html>

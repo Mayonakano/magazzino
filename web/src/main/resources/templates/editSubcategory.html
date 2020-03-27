@@ -6,21 +6,23 @@
 </head>
 <body>
     <h1>Modifica qui la tua categoria</h1>
+    <a th:href="@{/magazzino}"><button>Home</button>
+    </a>
     <br>
     <br>
     <form th:action="@{/magazzino/savesubcategory}" method="post" th:object="${editSubcategory}">
         <input type="hidden" th:field="${editSubcategory.id}">
         <p>Nome:</p> <br>
-        <input type="text" th:field="${editSubcategory.name}" th:value="${editSubcategory.name}" required="required"> <br>
+        <input type="text" th:field="${editSubcategory.name}"  required="required"> <br>
         <p>Categoria:</p>
         <select th:field="*{category.id}">
             <option th:each="cate : ${categories}" th:value="${cate.id}" th:text="${cate.name}" required="required"></option>
         </select> <br>
         <p>Descrizione Sottocategoria:</p> <br>
-        <input th:field="${editSubcategory.description}" th:value="${editSubcategory.description}" required="required">
+        <input type="text" th:field="${editSubcategory.description}" th:text="${editSubcategory.description}"required="required">
         <br>
         <br>
-        <button type="submit" >Conferma la Modifica</button>
+        <button type="submit" onclick="return confirm('Sei sicuro/a di volerla modificare?')">Conferma la Modifica</button>
     </form>
 </body>
 </html>

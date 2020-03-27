@@ -21,7 +21,7 @@
     <input th:field="${newSubcategory.description}" th:value="${newSubcategory.description}" required="required">
     <br>
     <br>
-    <button type="submit">Aggiungi Sottocategoria</button>
+    <button type="submit" onclick="return confirm('Sei sicuro/a di volerla aggiungere?')">Aggiungi Sottocategoria</button>
 </form>
 </body>
 </html>

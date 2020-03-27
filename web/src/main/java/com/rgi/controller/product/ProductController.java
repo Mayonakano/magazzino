@@ -51,20 +51,15 @@ public class ProductController {
 
      @PostMapping("/newproduct")
      public String addOne(@ModelAttribute Product newProduct, Model model) {
-             Subcategory subcategory = subcategoryService.subcategory(newProduct.getSubcategory().getId()).orElse(null);
-             newProduct.setSubcategory(subcategory);
-             for(int i=0; i<service.products().size(); i++) {
-                if(service.products().contains(newProduct)) {
-                    service.product(i).get().setQuantity(service.product(i).get().getQuantity() + newProduct.getQuantity());
-                    break;
-                } else if (newProduct.getName()!=null && newProduct.getSubcategory()!=null
-                     && newProduct.getShortDescription()!=null && newProduct.getBasePrice()!=null && newProduct.getQuantity()!=0) {
-                service.addProduct(newProduct);
-                    break;
-                } else {
-                    return "paginaErrore";
-                 }
-             }
+         Subcategory subcategory = subcategoryService.subcategory(newProduct.getSubcategory().getId()).orElse(null);
+         newProduct.setSubcategory(subcategory);
+         if (newProduct.getName() != null && !" ".equals(newProduct.getName()) && newProduct.getSubcategory() != null
+                 && newProduct.getShortDescription() != null && !" ".equals(newProduct.getShortDescription())
+                 && newProduct.getBasePrice()>0 && newProduct.getQuantity()>0) {
+             service.addProduct(newProduct);
+         } else {
+             return "paginaErrore";
+         }
          model.addAttribute("products", service.products());
          return products(model);
      }
@@ -79,25 +74,20 @@ public class ProductController {
      @GetMapping("/editproduct/{id}")
      public String editProduct (@PathVariable long id, @ModelAttribute Product editProduct, Model model) {
          Optional<Product> p = service.product(id);
-         model.addAttribute("editProduct", editProduct);
+         model.addAttribute("editProduct", p);
          model.addAttribute("categories", subcategoryService.subcategories());
          return "editProduct";
      }
 
      @PostMapping("/editproduct")
      public String saveEditProduct (@ModelAttribute Product newProduct, Model model) {
-         for (int i = 0; i < service.products().size(); i++) {
-             if (service.product(i).equals(newProduct)) {
-                 service.product(i).get().setQuantity(service.product(i).get().getQuantity() + newProduct.getQuantity());
-                 break;
-             } else if (newProduct.getName() != null && newProduct.getSubcategory() != null
-                     && newProduct.getShortDescription() != null && newProduct.getBasePrice() != null && newProduct.getQuantity() != 0) {
+         if (newProduct.getName() != null && !" ".equals(newProduct.getName()) && newProduct.getSubcategory() != null
+                     && newProduct.getShortDescription() != null && !" ".equals(newProduct.getShortDescription())
+                     && newProduct.getBasePrice()>0 && newProduct.getQuantity()>0) {
                  service.updateProduct(newProduct);
-                 break;
              } else {
                  return "paginaErrore";
              }
-         }
          return products(model);
      }
 }

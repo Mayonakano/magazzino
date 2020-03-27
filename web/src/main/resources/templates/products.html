@@ -20,10 +20,10 @@
         <span th:text="${product.quantity}"></span>
         <br>
         <a th:href="@{/magazzino/deleteproduct/{id}(id=${product.id})}">
-            <button>Elimina</button>
+            <button onclick="return confirm('Sei sicuro/a di volerlo eliminare?')">Elimina</button>
         </a>
         <a th:href="@{/magazzino/editproduct/{id}(id=${product.id})}">
-            <button>Modifica</button>
+            <button onclick="return confirm('Sei sicuro/a di volerlo modificare?')">Modifica</button>
        </a>
         <br>
         <br>
