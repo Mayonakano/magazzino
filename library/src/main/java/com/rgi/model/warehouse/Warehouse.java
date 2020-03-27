@@ -9,8 +9,8 @@ public class Warehouse {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private String name;
-    private double price;
+    private double basePrice;
+    private int quantity;
     @OneToOne
     private Product product;
 
@@ -22,20 +22,20 @@ public class Warehouse {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public double getBasePrice() {
+        return basePrice;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setBasePrice(double basePrice) {
+        this.basePrice = basePrice;
     }
 
-    public double getPrice() {
-        return price;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public Product getProduct() {
@@ -45,5 +45,4 @@ public class Warehouse {
     public void setProduct(Product product) {
         this.product = product;
     }
-
 }

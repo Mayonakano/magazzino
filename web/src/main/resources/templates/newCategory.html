@@ -10,7 +10,7 @@
     </a>
     <form th:action="@{/magazzino/newcategory}" method="post" th:object="${newCategory}">
     <h4>Nome: <input type="text" th:field="${newCategory.name}" required="required"> </h4>
-    <p>Tassa: <input type="number" th:field="${newCategory.tax}" required="required"> </p>
+    <p>Tassa: <input type="number" th:field="${newCategory.tax}" min=1 required="required"> </p>
     <button type="submit" onclick="return confirm('Sei sicuro/a di volerla salvare?')">Aggiungi Categoria</button>
     </form>
 </body>

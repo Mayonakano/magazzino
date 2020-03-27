@@ -15,8 +15,6 @@ public class Product {
     private long id;
     private String name;
     private String shortDescription;
-    private Double basePrice;
-    private int quantity;
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name= "subcategory_id",nullable = false)
     private Subcategory subcategory;
@@ -45,14 +43,6 @@ public class Product {
         this.shortDescription = shortDescription;
     }
 
-    public void setBasePrice(Double basePrice) {
-        this.basePrice = basePrice;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
     public void setSubcategory(Subcategory subcategory) {
         this.subcategory = subcategory;
     }
@@ -67,14 +57,6 @@ public class Product {
 
     public String getShortDescription() {
         return shortDescription;
-    }
-
-    public Double getBasePrice() {
-        return basePrice;
-    }
-
-    public int getQuantity() {
-        return quantity;
     }
 
     public Subcategory getSubcategory() {

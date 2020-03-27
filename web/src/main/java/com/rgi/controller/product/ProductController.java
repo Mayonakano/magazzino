@@ -54,8 +54,7 @@ public class ProductController {
          Subcategory subcategory = subcategoryService.subcategory(newProduct.getSubcategory().getId()).orElse(null);
          newProduct.setSubcategory(subcategory);
          if (newProduct.getName() != null && !" ".equals(newProduct.getName()) && newProduct.getSubcategory() != null
-                 && newProduct.getShortDescription() != null && !" ".equals(newProduct.getShortDescription())
-                 && newProduct.getBasePrice()>0 && newProduct.getQuantity()>0) {
+                 && newProduct.getShortDescription() != null && !" ".equals(newProduct.getShortDescription())) {
              service.addProduct(newProduct);
          } else {
              return "paginaErrore";
@@ -75,15 +74,14 @@ public class ProductController {
      public String editProduct (@PathVariable long id, Model model) {
          Optional<Product> p = service.product(id);
          model.addAttribute("editProduct", p);
-         model.addAttribute("categories", subcategoryService.subcategories());
+         model.addAttribute("subcategories", subcategoryService.subcategories());
          return "editProduct";
      }
 
      @PostMapping("/editproduct")
      public String saveEditProduct (@ModelAttribute Product newProduct, Model model) {
          if (newProduct.getName() != null && !" ".equals(newProduct.getName()) && newProduct.getSubcategory() != null
-                     && newProduct.getShortDescription() != null && !" ".equals(newProduct.getShortDescription())
-                     && newProduct.getBasePrice()>0 && newProduct.getQuantity()>0) {
+                     && newProduct.getShortDescription() != null && !" ".equals(newProduct.getShortDescription())) {
                  service.updateProduct(newProduct);
              } else {
                  return "paginaErrore";
