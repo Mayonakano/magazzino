@@ -72,7 +72,7 @@ public class ProductController {
      }
 
      @GetMapping("/editproduct/{id}")
-     public String editProduct (@PathVariable long id, @ModelAttribute Product editProduct, Model model) {
+     public String editProduct (@PathVariable long id, Model model) {
          Optional<Product> p = service.product(id);
          model.addAttribute("editProduct", p);
          model.addAttribute("categories", subcategoryService.subcategories());

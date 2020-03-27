@@ -52,8 +52,9 @@ public class SubcategoryController {
     }
 
     @GetMapping("/editsubcategory/{id}")
-    public String editSubcategory(@PathVariable long id, @ModelAttribute Subcategory editSubcategory, Model model) {
-            model.addAttribute("editSubcategory", editSubcategory);
+    public String editSubcategory(@PathVariable long id, Model model) {
+        Optional<Subcategory> subcategory = subService.subcategory(id);
+            model.addAttribute("editSubcategory", subcategory);
             model.addAttribute("categories", cateService.categories());
             return "editSubcategory";
     }
