@@ -5,23 +5,23 @@
     <title>Magazzino MVC</title>
 </head>
 <body>
-    <h1>Inserisci qui la nuova Sottocategoria</h1>
-    <a th:href="@{/magazzino}"><button>Home</button>
-    </a>
-    <form th:action="@{/magazzino/newsubcategory}" method="post" th:object="${newSubcategory}">
-        <p>Nome:</p>
-            <input type="text" th:field="${newSubcategory.name}" required="required">
-        <br>
-        <p>Categoria:</p>
-        <select th:field="*{category.id}">
-            <option th:each="cate : ${categories}" th:value="${cate.id}" th:text="${cate.name}" required="required"></option>
-        </select>
-        <br>
-        <p>Piccola Descrizione: </p>
-            <input th:field="${newSubcategory.description}" th:value="${newSubcategory.description}" required="required">
-        <br>
-        <br>
-        <button type="submit">Aggiungi Sottocategoria</button>
-    </form>
+<h1>Inserisci qui la nuova Sottocategoria</h1>
+<a th:href="@{/magazzino}"><button>Home</button>
+</a>
+<form th:action="@{/magazzino/newsubcategory}" method="post" th:object="${newSubcategory}">
+    <p>Nome:</p>
+    <input type="text" th:field="${newSubcategory.name}" required="required">
+    <br>
+    <p>Categoria:</p>
+    <select th:field="*{category.id}">
+        <option th:each="cate : ${categories}" th:value="${cate.id}" th:text="${cate.name}" required="required"></option>
+    </select>
+    <br>
+    <p>Piccola Descrizione: </p>
+    <input th:field="${newSubcategory.description}" th:value="${newSubcategory.description}" required="required">
+    <br>
+    <br>
+    <button type="submit" onclick="return confirm('Sei sicuro/a di volerla aggiungere?')">Aggiungi Sottocategoria</button>
+</form>
 </body>
 </html>

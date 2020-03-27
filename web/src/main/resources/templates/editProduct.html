@@ -20,7 +20,7 @@
     <textarea id="${editProduct.shortDescription}" th.value="${editProduct.shortDescription}"cols="40" rows="10" required="required"></textarea><br>
     <p>Prezzo Base: <input type="text" th:value="${editProduct.basePrice}"th:field="${editProduct.basePrice}" required="required"></p> <br>
     <p>Quantità: <input type="number" th:value="${editProduct.quantity}" th:field="${editProduct.quantity}" required="required"></p> <br>
-    <button type="submit" >Conferma la Modifica</button>
+    <button type="submit" onclick="return confirm('Sei sicuro/a di volerlo modificare?')">Conferma la Modifica</button>
     </form>
 </body>
 </html>

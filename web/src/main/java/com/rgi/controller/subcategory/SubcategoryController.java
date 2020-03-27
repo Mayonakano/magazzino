@@ -41,7 +41,8 @@ public class SubcategoryController {
     public String addOne(@ModelAttribute Subcategory newSubcategory, Model model) {
         Category category = cateService.category(newSubcategory.getCategory().getId()).orElse(null);
         newSubcategory.setCategory(category);
-        if(newSubcategory.getName()!= null && newSubcategory.getCategory()!=null && newSubcategory.getDescription()!=null) {
+        if(newSubcategory.getName()!= null && !" ".equals(newSubcategory.getName()) && newSubcategory.getCategory()!=null &&
+                !" ".equals(newSubcategory.getDescription()) && newSubcategory.getDescription()!=null) {
             subService.addSubcategory(newSubcategory);
         } else {
             return "paginaErrore";
@@ -52,17 +53,16 @@ public class SubcategoryController {
 
     @GetMapping("/editsubcategory/{id}")
     public String editSubcategory(@PathVariable long id, @ModelAttribute Subcategory editSubcategory, Model model) {
-        Optional<Subcategory> s = subService.subcategory(id);
-        model.addAttribute("editSubcategory", editSubcategory);
-        model.addAttribute("categories", cateService.categories());
-
-        return "editSubcategory";
+            model.addAttribute("editSubcategory", editSubcategory);
+            model.addAttribute("categories", cateService.categories());
+            return "editSubcategory";
     }
 
     @PostMapping("/savesubcategory")
     public String saveSubcategoty (@ModelAttribute Subcategory saveSubcategory, Model model) {
         Subcategory s = saveSubcategory;
-        if(s.getName()!=null && s.getDescription()!=null && s.getCategory()!=null) {
+        if(s.getName()!=null && !" ".equals(s.getName()) && s.getDescription()!=null &&
+                !" ".equals(s.getDescription()) && s.getCategory()!=null) {
             subService.updateSubcategory(s);
         } else {
             return "paginaErrore";

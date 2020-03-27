@@ -16,12 +16,15 @@
         <p>Categoria: <span th:text="${subcategory.category.name}"></span></p>
         <p>Tassa: <span th:text="${subcategory.category.tax}"></span>%</p>
         <p>Descrizione: <span th:text="${subcategory.description}"></span></p>
+        <p>Categoria </p>
+        <p>Nome categoria: <span th:text="${subcategory.category.name}"></span></p>
+        <p>Tassa categoria: <span th:text="${subcategory.category.tax}"></span></p>
         <br>
         <a th:href="@{/magazzino/deletesubcategory/{id}(id=${subcategory.id})}">
-            <button>Elimina</button>
+            <button onclick="return confirm('Sei sicuro/a di volerla eliminare?')">Elimina</button>
         </a>
         <a th:href="@{/magazzino/editsubcategory/{id}(id=${subcategory.id})}">
-            <button>Modifica</button>
+            <button onclick="return confirm('Sei sicuro/a di volerla modificare?')">Modifica</button>
         </a>
     </li>
 </ul>

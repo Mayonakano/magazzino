@@ -18,13 +18,12 @@
         <span th:text="${category.tax}"></span>
         </p>
         <a th:href="@{/magazzino/deletecategory/{id}(id=${category.id})}">
-            <button>Elimina</button>
+            <button onclick="return confirm('Sei sicuro/a di volerla eliminare?')">Elimina</button>
         </a>
         <a th:href="@{/magazzino/editcategory/{id}(id=${category.id})}">
-            <button>Modifica</button>
+            <button onclick="return confirm('Sei sicuro/a di volerla modificare?')">Modifica</button>
         </a>
     </li>
 </ul>
-
 </body>
 </html>

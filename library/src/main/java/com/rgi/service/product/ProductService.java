@@ -17,27 +17,18 @@ public class ProductService {
     @Autowired
     private ProductRepository repository;
 
-    public Collection<? extends Product> products(){
-
+    public Collection<? extends Product> products() {
         return (Collection<? extends Product>)repository.findAll();
-
     }
 
-    public Optional<Product> product(long id){
+    public Optional<Product> product(long id) {
         return repository.findById(id);
     }
 
     public void addProduct(Product product) {
-        List<Product> productsList = (List<Product>) products();
-        for (Product p : productsList) {
-            if (p.getName().equalsIgnoreCase(product.getName()) && p.getBasePrice().equals(product.getBasePrice())) {
-                p.setQuantity(p.getQuantity() + product.getQuantity());
-                break;
-            } else {
-                repository.save(product);
-            }
-        }
+        repository.save(product);
     }
+
     public void updateProduct(Product product) {
         Optional<Product> toDelete = product(product.getId());
         toDelete.ifPresent(c -> repository.save(product));
