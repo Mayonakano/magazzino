@@ -45,7 +45,7 @@ public class SubcategoryController {
                 !" ".equals(newSubcategory.getDescription()) && newSubcategory.getDescription()!=null) {
             subService.addSubcategory(newSubcategory);
         } else {
-            return "paginaErrore";
+            return "errore";
         }
         model.addAttribute("subcategories", subService.subcategories());
         return subcategories(model);

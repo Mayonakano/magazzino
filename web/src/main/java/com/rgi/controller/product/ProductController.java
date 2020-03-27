@@ -58,7 +58,7 @@ public class ProductController {
                  && newProduct.getBasePrice()>0 && newProduct.getQuantity()>0) {
              service.addProduct(newProduct);
          } else {
-             return "paginaErrore";
+             return "erroreProduct";
          }
          model.addAttribute("products", service.products());
          return products(model);
@@ -86,7 +86,7 @@ public class ProductController {
                      && newProduct.getBasePrice()>0 && newProduct.getQuantity()>0) {
                  service.updateProduct(newProduct);
              } else {
-                 return "paginaErrore";
+                 return "erroreProduct";
              }
          return products(model);
      }

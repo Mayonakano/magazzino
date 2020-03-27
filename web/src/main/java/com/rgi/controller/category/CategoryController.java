@@ -37,7 +37,7 @@ public class CategoryController {
             if (newCategory.getName()!=null && !" ".equals(newCategory.getName()) && newCategory.getTax()>0) {
                 categoryService.addCategory(newCategory);
             } else  {
-                return "paginaErrore";
+                return "erroreCategory";
             }
         return categories(model);
     }
@@ -46,7 +46,7 @@ public class CategoryController {
     public String editCategory(@PathVariable long id, @ModelAttribute Category editCategory, Model model) {
         Optional<Category> c = categoryService.category(id);
         if (c == null)
-            return "paginaErrore";
+            return "erroreCategory";
         model.addAttribute("editCategory", editCategory);
         return "editCategory";
     }
@@ -57,7 +57,7 @@ public class CategoryController {
         if(c.getName()!=null && !" ".equals(c.getName()) && c.getTax()>0) {
             categoryService.updateCategory(c);
         } else {
-            return "paginaErrore";
+            return "erroreCategory";
         }
         return categories(model);
     }
