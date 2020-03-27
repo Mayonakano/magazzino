@@ -13,9 +13,9 @@
 <form th:action="@{/magazzino/savecategory}" method="post" th:object="${editCategory}">
     <input type="hidden" th:field="${editCategory.id}">
     <p>Nome:</p>
-    <input type="text" th:value="${editCategory.name}" th:field="${editCategory.name}" ><br>
+    <input type="text" th:field="${editCategory.name}" ><br>
     <p>Tassa:</p>
-    <input type="text" th:value="${editCategory.tax}"th:field="${editCategory.tax}"><br>
+    <input type="text" th:field="${editCategory.tax}"><br>
     <br>
     <button type="submit" onclick="return confirm('Sei sicuro/a di volerla modificare?')">Conferma la Modifica</button>
 </form>

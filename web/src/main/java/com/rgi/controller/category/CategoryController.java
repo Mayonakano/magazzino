@@ -43,17 +43,15 @@ public class CategoryController {
     }
 
     @GetMapping("/editcategory/{id}")
-    public String editCategory(@PathVariable long id, @ModelAttribute Category editCategory, Model model) {
+    public String editCategory(@PathVariable long id, Model model) {
         Optional<Category> c = categoryService.category(id);
-        if (c == null)
-            return "erroreCategory";
-        model.addAttribute("editCategory", editCategory);
+        model.addAttribute("editCategory", c);
         return "editCategory";
     }
 
     @PostMapping("/savecategory")
-    public String saveCategory (@ModelAttribute Category saveCategory, Model model) {
-        Category c = saveCategory;
+    public String saveCategory (@ModelAttribute Category editCategory, Model model) {
+        Category c = editCategory;
         if(c.getName()!=null && !" ".equals(c.getName()) && c.getTax()>0) {
             categoryService.updateCategory(c);
         } else {
