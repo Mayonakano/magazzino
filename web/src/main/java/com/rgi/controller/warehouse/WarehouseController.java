@@ -38,6 +38,7 @@ public class WarehouseController {
     public String warehouse (@PathVariable long id, Model model) {
         Optional<Warehouse> w = warService.getWarehouse(id);
         model.addAttribute("warehouse", w);
+        model.addAttribute("products", prodService.products());
         return "warehouse";
     }
 
