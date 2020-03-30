@@ -5,12 +5,16 @@
     <title>Magazzino MVC</title>
 </head>
 <body>
-    <h1>Inserisci un nuovo prodotto nel magazzino</h1>
+    <h1>Inserisci un nuovo Magazzino</h1>
     <a th:href="@{/magazzino}">
-        <button>Home</button>
+        <button>Homepage</button>
     </a>
-    <form th:action="@{/magazzino/newWarehouse}" method="post" th:object="${newWarehouse}">
-        <button type="submit" onclick="return confirm('Sei sicuro/a di volerlo aggiungere?')">Aggiungi Prodotto</button>
+    <br>
+    <br>
+    <form th:action="@{/magazzino/addwarehouse}" method="post" th:object="${newWarehouse}">
+        <input type="text" th:field="${newWarehouse.name}"> <br>
+        <br>
+        <button type="submit" onclick="return confirm('Sei sicuro/a di volerlo aggiungere?')">Aggiungi Magazzino</button>
     </form>
 </body>
 </html>

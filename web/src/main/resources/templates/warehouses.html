@@ -5,23 +5,16 @@
     <title>Magazzino MVC</title>
 </head>
 <body>
-<h1>Ecco l'inventario del magazzino</h1>
-    <a th:href="@{/magazzino}">
-        <button>Home</button>
-    </a>
-<ul>
-    <li th:each="warehouse : ${warehouse.products}">
-        <b>Id: <span th:text="${warehouse.id}"></span></b>
-        <b>Nome: <span th:text="${warehouse.product.name}">
-            <a th:href="@{/magazzino/warehouse/{id}(id=${warehouse.id}">
-        </a></span></b>
-        <a th:href="@{/warehouse/deletewarehouse/{id}(id=${warehouse.id})}">
-            <button>Elimina</button>
-        </a>
-        <a th:href="@{/warehouse/editwarehouse/{id}(id=${warehouse.id})}">
-            <button>Modifica</button>
-        </a>
-    </li>
-</ul>
+<h1>Ecco l'elenco dei magazzini esistenti</h1>
+    <span><a th:href="@{/magazzino}"><button>Homepage</button></a></span> &nbsp
+    <span><a th:href="@{/magazzino/addwarehouse}"><button>Aggiungi un magazzino</button></a></span>
+    <ul>
+        <li th:each="warehouse : ${warehouses}">
+        <p>Id: <span th:text="${warehouse.id}"></span></p>
+        <p>Nome: <span th:text="${warehouse.name}"></span></p>
+        <span><a th:href="@{/magazzino/deletewarehouse/{id}(id=${warehouse.id})}"><button>Elimina</button></a></span> &nbsp
+        <span><a th:href="@{/magazzino/editwarehouse/{id}(id=${warehouse.id})}"><button>Modifica</button></a></span>
+        </li>
+    </ul>
 </body>
 </html>

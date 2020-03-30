@@ -17,12 +17,8 @@
         <p> Tassa:
         <span th:text="${category.tax}"></span>
         </p>
-        <a th:href="@{/magazzino/deletecategory/{id}(id=${category.id})}">
-            <button onclick="return confirm('Sei sicuro/a di volerla eliminare?')">Elimina</button>
-        </a>
-        <a th:href="@{/magazzino/editcategory/{id}(id=${category.id})}">
-            <button onclick="return confirm('Sei sicuro/a di volerla modificare?')">Modifica</button>
-        </a>
+<span><a th:href="@{/magazzino/deletecategory/{id}(id=${category.id})}"><button onclick="return confirm('Sei sicuro/a di volerla eliminare?')">Elimina</button></a></span> &nbsp
+<span><a th:href="@{/magazzino/editcategory/{id}(id=${category.id})}"><button onclick="return confirm('Sei sicuro/a di volerla modificare?')">Modifica</button></a></span>
     </li>
 </ul>
 </body>

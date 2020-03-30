@@ -2,8 +2,10 @@ package com.rgi.controller.product;
 
 import com.rgi.model.product.Product;
 import com.rgi.model.subcategory.Subcategory;
+import com.rgi.model.warehouse.Warehouse;
 import com.rgi.service.product.ProductService;
 import com.rgi.service.subcategory.SubcategoryService;
+import com.rgi.service.warehouse.WarehouseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +24,9 @@ public class ProductController {
 
      @Autowired
      private SubcategoryService subcategoryService;
+
+     @Autowired
+     private WarehouseService warSub;
 
      @GetMapping
      public String home(Model model) {
@@ -45,6 +50,7 @@ public class ProductController {
         Product newProduct = new Product();
         newProduct.setSubcategory(new Subcategory());
         model.addAttribute("newProduct", newProduct);
+        model.addAttribute("warehouses", warSub.getWarehouses());
         model.addAttribute("subcategories", subcategoryService.subcategories());
         return "newProduct";
     }
