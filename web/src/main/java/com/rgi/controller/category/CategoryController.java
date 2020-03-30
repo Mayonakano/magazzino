@@ -37,27 +37,25 @@ public class CategoryController {
             if (newCategory.getName()!=null && !" ".equals(newCategory.getName()) && newCategory.getTax()>0) {
                 categoryService.addCategory(newCategory);
             } else  {
-                return "paginaErrore";
+                return "erroreCategory";
             }
         return categories(model);
     }
 
     @GetMapping("/editcategory/{id}")
-    public String editCategory(@PathVariable long id, @ModelAttribute Category editCategory, Model model) {
+    public String editCategory(@PathVariable long id, Model model) {
         Optional<Category> c = categoryService.category(id);
-        if (c == null)
-            return "paginaErrore";
-        model.addAttribute("editCategory", editCategory);
+        model.addAttribute("editCategory", c);
         return "editCategory";
     }
 
     @PostMapping("/savecategory")
-    public String saveCategory (@ModelAttribute Category saveCategory, Model model) {
-        Category c = saveCategory;
+    public String saveCategory (@ModelAttribute Category editCategory, Model model) {
+        Category c = editCategory;
         if(c.getName()!=null && !" ".equals(c.getName()) && c.getTax()>0) {
             categoryService.updateCategory(c);
         } else {
-            return "paginaErrore";
+            return "erroreCategory";
         }
         return categories(model);
     }

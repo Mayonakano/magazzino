@@ -26,7 +26,20 @@ public class ProductService {
     }
 
     public void addProduct(Product product) {
-        repository.save(product);
+        List<Product> productList = (List<Product>) products();
+        boolean finished = false;
+        for (int i = 0; i < productList.size(); i++) {
+            Product p = productList.get(i);
+            if (p.getName().equalsIgnoreCase(product.getName()) && p.getShortDescription().equalsIgnoreCase(product.getShortDescription())
+                    && p.getSubcategory().equals(product.getSubcategory())) {
+                p.setQuantity(p.getQuantity() + product.getQuantity());
+                repository.save(p);
+                finished = true;
+            }
+        }
+        if (!finished) {
+            repository.save(product);
+        }
     }
 
     public void updateProduct(Product product) {
