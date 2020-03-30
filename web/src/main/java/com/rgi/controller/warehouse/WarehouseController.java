@@ -45,24 +45,18 @@ public class WarehouseController {
     @GetMapping("/addwarehouse")
     public String newWarehouse(Model model) {
         Warehouse warehouse = new Warehouse();
-        warehouse.setProduct(new Product());
-        warehouse.getProduct().setSubcategory(new Subcategory());
         model.addAttribute("newWarehouse", warehouse);
         model.addAttribute("products", prodService.products());
         model.addAttribute("subcategories", subService.subcategories());
         return "newWarehouse";
     }
 
-    @PostMapping("/newwarehouse")
-    public String addOne(@ModelAttribute Warehouse newWarehouse, Model model) {
-        Product product = prodService.product(newWarehouse.getProduct().getId()).orElse(null);
-        Subcategory subcategory = subService.subcategory(newWarehouse.getProduct().getSubcategory().getId()).orElse(null);
-        newWarehouse.setProduct(product);
-        newWarehouse.getProduct().setSubcategory(subcategory);
-        if (newWarehouse.getBasePrice()>0 && newWarehouse.getQuantity()>0 && newWarehouse.getProduct().getSubcategory()!= null
-                && newWarehouse.getProduct().getShortDescription()!= null && !" ".equals(newWarehouse.getProduct().getShortDescription())
-                && newWarehouse.getProduct().getName()!= null && !" ".equals(newWarehouse.getProduct().getName())) {
-            warService.addWarehouse(newWarehouse);
+    @PostMapping("warehouse/{id}/addonwarehouse")
+    public String addOne(@PathVariable long warehouseId,@ModelAttribute Product newProduct, Model model) {
+        if (newProduct.getBasePrice()>0 && newProduct.getQuantity()>0 && newProduct.getSubcategory()!= null
+                && newProduct.getShortDescription()!= null && !" ".equals(newProduct.getShortDescription())
+                && newProduct.getName()!= null && !" ".equals(newProduct.getName())) {
+            warService.addProductOnWarehouse(warehouseId, newProduct);
         } else {
             return "paginaErrore";
         }
@@ -70,9 +64,9 @@ public class WarehouseController {
         return allWare(model);
     }
 
-    @GetMapping("/deletewarehouse/{id}")
-    public String deleteOne(@PathVariable long id, Model model) {
-        warService.deleteWarehouse(id);
+    @GetMapping("warehouse/{id}/deleteproductonwarehouse/{id}")
+    public String deleteOne(@PathVariable long warehouseId,@PathVariable long productId, Model model) {
+        warService.deleteProductOnWarehouse(warehouseId, productId);
         model.addAttribute("warehouses", warService.getWarehouses());
         return allWare(model);
     }
@@ -81,16 +75,12 @@ public class WarehouseController {
     public String editWarehouse (@PathVariable long id, Model model) {
         Optional<Warehouse> w = warService.getWarehouse(id);
         model.addAttribute("editWarehouse", w);
-        model.addAttribute("products", prodService.products());
-        model.addAttribute("subcategories", subService.subcategories());
         return "editWarehouse";
     }
 
     @PostMapping("/editwarehouse")
     public String saveEditWarehouse (@ModelAttribute Warehouse newWarehouse, Model model) {
-        if (newWarehouse.getBasePrice()>0 && newWarehouse.getQuantity()>0 && newWarehouse.getProduct().getSubcategory()!= null
-                && newWarehouse.getProduct().getShortDescription()!= null && !" ".equals(newWarehouse.getProduct().getShortDescription())
-                && newWarehouse.getProduct().getName()!= null && !" ".equals(newWarehouse.getProduct().getName())) {
+        if (newWarehouse.getName()!=null && !"".equals(newWarehouse.getName())){
             warService.updateWarehouse(newWarehouse);
         } else {
             return "paginaErrore";

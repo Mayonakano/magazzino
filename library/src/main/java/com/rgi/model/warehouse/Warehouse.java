@@ -3,16 +3,16 @@ package com.rgi.model.warehouse;
 import com.rgi.model.product.Product;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Warehouse {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private double basePrice;
-    private int quantity;
-    @OneToOne
-    private Product product;
+    private String name;
+    @OneToMany
+    private List<Product> products;
 
     public long getId() {
         return id;
@@ -22,27 +22,19 @@ public class Warehouse {
         this.id = id;
     }
 
-    public double getBasePrice() {
-        return basePrice;
+    public String getName() {
+        return name;
     }
 
-    public void setBasePrice(double basePrice) {
-        this.basePrice = basePrice;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 }

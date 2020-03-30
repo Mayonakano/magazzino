@@ -10,13 +10,6 @@
         <button>Home</button>
     </a>
     <form th:action="@{/magazzino/newWarehouse}" method="post" th:object="${newWarehouse}">
-        <p>Prodotto</p>
-        <select th:field="*{product.id}">
-        <option th:each="prod : ${products}" th:value="${prod.id}" th:text="${prod.name}" required="required"></option>
-        </select> <br>
-        <p>Prezzo Base: <input type="text" th:field="${newProduct.basePrice}" required="required"></p>
-        <p>Quantità: <input type="number" th:field="${newProduct.quantity}" required="required"></p>
-        <br>
         <button type="submit" onclick="return confirm('Sei sicuro/a di volerlo aggiungere?')">Aggiungi Prodotto</button>
     </form>
 </body>
