@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Magazzino MVC</title>
+</head>
+<body>
+<h1>Ecco l'elenco dei magazzini esistenti</h1>
+    <span><a th:href="@{/magazzino}"><button>Homepage</button></a></span> &nbsp
+    <span><a th:href="@{/magazzino/addwarehouse}"><button>Aggiungi un magazzino</button></a></span>
+    <ul>
+        <li th:each="warehouse : ${warehouses}">
+        <p>Id: <span th:text="${warehouse.id}"></span></p>
+        <p>Nome: <span th:text="${warehouse.name}"></span></p>
+        <span><a th:href="@{/magazzino/deletewarehouse/{id}(id=${warehouse.id})}"><button>Elimina</button></a></span> &nbsp
+        <span><a th:href="@{/magazzino/editwarehouse/{id}(id=${warehouse.id})}"><button>Modifica</button></a></span>
+        </li>
+    </ul>
+</body>
+</html>

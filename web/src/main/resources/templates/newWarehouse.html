@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Magazzino MVC</title>
+</head>
+<body>
+    <h1>Inserisci un nuovo Magazzino</h1>
+    <a th:href="@{/magazzino}">
+        <button>Homepage</button>
+    </a>
+    <br>
+    <br>
+    <form th:action="@{/magazzino/addwarehouse}" method="post" th:object="${newWarehouse}">
+        <input type="text" th:field="${newWarehouse.name}"> <br>
+        <br>
+        <button type="submit" onclick="return confirm('Sei sicuro/a di volerlo aggiungere?')">Aggiungi Magazzino</button>
+    </form>
+</body>
+</html>

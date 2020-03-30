@@ -2,8 +2,10 @@ package com.rgi.controller.product;
 
 import com.rgi.model.product.Product;
 import com.rgi.model.subcategory.Subcategory;
+import com.rgi.model.warehouse.Warehouse;
 import com.rgi.service.product.ProductService;
 import com.rgi.service.subcategory.SubcategoryService;
+import com.rgi.service.warehouse.WarehouseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +24,9 @@ public class ProductController {
 
      @Autowired
      private SubcategoryService subcategoryService;
+
+     @Autowired
+     private WarehouseService warSub;
 
      @GetMapping
      public String home(Model model) {
@@ -45,6 +50,7 @@ public class ProductController {
         Product newProduct = new Product();
         newProduct.setSubcategory(new Subcategory());
         model.addAttribute("newProduct", newProduct);
+        model.addAttribute("warehouses", warSub.getWarehouses());
         model.addAttribute("subcategories", subcategoryService.subcategories());
         return "newProduct";
     }
@@ -54,8 +60,7 @@ public class ProductController {
          Subcategory subcategory = subcategoryService.subcategory(newProduct.getSubcategory().getId()).orElse(null);
          newProduct.setSubcategory(subcategory);
          if (newProduct.getName() != null && !" ".equals(newProduct.getName()) && newProduct.getSubcategory() != null
-                 && newProduct.getShortDescription() != null && !" ".equals(newProduct.getShortDescription())
-                 && newProduct.getBasePrice()>0 && newProduct.getQuantity()>0) {
+                 && newProduct.getShortDescription() != null && !" ".equals(newProduct.getShortDescription())) {
              service.addProduct(newProduct);
          } else {
              return "erroreProduct";
@@ -72,18 +77,17 @@ public class ProductController {
      }
 
      @GetMapping("/editproduct/{id}")
-     public String editProduct (@PathVariable long id, @ModelAttribute Product editProduct, Model model) {
+     public String editProduct (@PathVariable long id, Model model) {
          Optional<Product> p = service.product(id);
          model.addAttribute("editProduct", p);
-         model.addAttribute("categories", subcategoryService.subcategories());
+         model.addAttribute("subcategories", subcategoryService.subcategories());
          return "editProduct";
      }
 
      @PostMapping("/editproduct")
      public String saveEditProduct (@ModelAttribute Product newProduct, Model model) {
          if (newProduct.getName() != null && !" ".equals(newProduct.getName()) && newProduct.getSubcategory() != null
-                     && newProduct.getShortDescription() != null && !" ".equals(newProduct.getShortDescription())
-                     && newProduct.getBasePrice()>0 && newProduct.getQuantity()>0) {
+                     && newProduct.getShortDescription() != null && !" ".equals(newProduct.getShortDescription())) {
                  service.updateProduct(newProduct);
              } else {
                  return "erroreProduct";

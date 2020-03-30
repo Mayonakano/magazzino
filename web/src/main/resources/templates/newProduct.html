@@ -9,7 +9,12 @@
     <a th:href="@{/magazzino}"> <button>Home</button>
     </a>
     <form th:action="@{/magazzino/newproduct}" method="post" th:object="${newProduct}">
-        <p>Nome: <input type="text" th:field="${newProduct.name}" required="required"></p> Sottocategoria:
+        <p>Nome: <input type="text" th:field="${newProduct.name}" required="required"></p>
+        Magazzino di Appartenenza:
+        <select th:field="*{warehouse.id}">
+            <option th:each="war : ${warehouses}" th:value="${war.id}" th:text="${war.name}"></option>
+        </select>
+        Sottocategoria:
         <select th:field="*{subcategory.id}">
         <option th:each="subcate : ${subcategories}" th:value="${subcate.id}" th:text="${subcate.name}" required="required"></option>
         </select> <br>
