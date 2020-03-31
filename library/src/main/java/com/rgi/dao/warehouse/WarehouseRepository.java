@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 import java.util.Collection;
 
 @Repository
-public interface WarehouseRepository extends CrudRepository<Warehouse, Long> {
+public interface WarehouseRepository extends CrudRepository <Warehouse, Long> {
 }

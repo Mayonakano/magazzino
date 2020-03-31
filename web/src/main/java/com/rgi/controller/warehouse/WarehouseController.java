@@ -99,7 +99,7 @@ public class WarehouseController {
         if (newWarehouse.getName()!=null && !"".equals(newWarehouse.getName())){
             warService.updateWarehouse(newWarehouse);
         } else {
-            return "paginaErrore";
+            return "erroreWarehouse";
         }
         model.addAttribute("warehouses", warService.getWarehouses());
         return allWare(model);

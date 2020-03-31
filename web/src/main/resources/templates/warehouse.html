@@ -5,7 +5,7 @@
     <title>Magazzino MVC</title>
 </head>
 <body>
-    <h1>Elenco prodotti di <h1 th:text="${warehouse.name}"></h1></h1>
+<h2>Elenco prodotti di questo Magazzino </h2>
     <a th:href='@{/magazzino/warehouse/{id}(id=${warehouse.id})/addonwarehouse}'>
         <button>Aggiungi prodotto al magazzino</button>
     </a>

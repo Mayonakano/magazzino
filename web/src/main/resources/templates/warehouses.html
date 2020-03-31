@@ -10,8 +10,8 @@
     <span><a th:href="@{/magazzino/addwarehouse}"><button>Aggiungi un magazzino</button></a></span>
     <ul>
         <li th:each="warehouse : ${warehouses}">
-        <p>Id: <span th:text="${warehouse.id}"></span></p>
         <p>Nome: <span th:text="${warehouse.name}"></span></p>
+<!--            <a th:href="@{/magazzino/warehouse/{id}(id = ${warehouse.id})}">  -->
         <span><a th:href="@{/magazzino/deletewarehouse/{id}(id=${warehouse.id})}"><button>Elimina</button></a></span> &nbsp
         <span><a th:href="@{/magazzino/editwarehouse/{id}(id=${warehouse.id})}"><button>Modifica</button></a></span>
         </li>
