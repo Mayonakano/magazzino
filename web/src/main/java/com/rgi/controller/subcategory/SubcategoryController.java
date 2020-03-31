@@ -45,7 +45,7 @@ public class SubcategoryController {
                 !" ".equals(newSubcategory.getDescription()) && newSubcategory.getDescription()!=null) {
             subService.addSubcategory(newSubcategory);
         } else {
-            return "erroreSubcategory";
+            return "erroreAddSubcategory";
         }
         model.addAttribute("subcategories", subService.subcategories());
         return subcategories(model);
@@ -66,7 +66,7 @@ public class SubcategoryController {
                 !" ".equals(s.getDescription()) && s.getCategory()!=null) {
             subService.updateSubcategory(s);
         } else {
-            return "erroreSubcategory";
+            return "erroreEditSubcategory";
         }
         return subcategories(model);
     }

@@ -80,7 +80,7 @@ public class WarehouseController {
 
     @PostMapping("/editwarehouse")
     public String saveEditWarehouse (@ModelAttribute Warehouse newWarehouse, Model model) {
-        if (newWarehouse.getName()!=null && !"".equals(newWarehouse.getName())){
+        if (newWarehouse.getName()!=null && !" ".equals(newWarehouse.getName()) && !"".equals(newWarehouse.getName())){
             warService.updateWarehouse(newWarehouse);
         } else {
             return "erroreEditWarehouse";

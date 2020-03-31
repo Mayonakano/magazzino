@@ -63,7 +63,7 @@ public class ProductController {
                  && newProduct.getShortDescription() != null && !" ".equals(newProduct.getShortDescription())) {
              service.addProduct(newProduct);
          } else {
-             return "erroreProduct";
+             return "erroreAddProduct";
          }
          model.addAttribute("products", service.products());
          return products(model);
@@ -90,7 +90,7 @@ public class ProductController {
                      && newProduct.getShortDescription() != null && !" ".equals(newProduct.getShortDescription())) {
                  service.updateProduct(newProduct);
              } else {
-                 return "erroreProduct";
+                 return "erroreEditProduct";
              }
          return products(model);
      }

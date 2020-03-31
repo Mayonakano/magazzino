@@ -37,7 +37,7 @@ public class CategoryController {
             if (newCategory.getName()!=null && !" ".equals(newCategory.getName()) && newCategory.getTax()>0) {
                 categoryService.addCategory(newCategory);
             } else  {
-                return "erroreCategory";
+                return "erroreAddCategory";
             }
         return categories(model);
     }
@@ -55,7 +55,7 @@ public class CategoryController {
         if(c.getName()!=null && !" ".equals(c.getName()) && c.getTax()>0) {
             categoryService.updateCategory(c);
         } else {
-            return "erroreCategory";
+            return "erroreEditCategory";
         }
         return categories(model);
     }
