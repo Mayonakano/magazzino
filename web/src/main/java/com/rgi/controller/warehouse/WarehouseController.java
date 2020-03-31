@@ -54,29 +54,13 @@ public class WarehouseController {
 
     @PostMapping("/addwarehouse")
     public String addWarehouse(@ModelAttribute Warehouse warehouse, Model model) {
-        warService.addWarehouse(warehouse);
-        model.addAttribute("warehouses", warService.getWarehouses());
-        return "warehouses";
-    }
-
-    @PostMapping("/warehouse/{id}/addonwarehouse")
-    public String addOne(@PathVariable long warehouseId,@ModelAttribute Product newProduct, Model model) {
-        if (newProduct.getBasePrice()>0 && newProduct.getQuantity()>0 && newProduct.getSubcategory()!= null
-                && newProduct.getShortDescription()!= null && !" ".equals(newProduct.getShortDescription())
-                && newProduct.getName()!= null && !" ".equals(newProduct.getName())) {
-            warService.addProductOnWarehouse(warehouseId, newProduct);
+        if(null!=warehouse.getName() && !"".equals(warehouse.getName())) {
+            warService.addWarehouse(warehouse);
         } else {
-            return "paginaErrore";
+            return "erroreAddWarehouse";
         }
         model.addAttribute("warehouses", warService.getWarehouses());
-        return allWare(model);
-    }
-
-    @GetMapping("/warehouse/{id}/deleteproductonwarehouse/{id}")
-    public String deleteOne(@PathVariable long warehouseId,@PathVariable long productId, Model model) {
-        warService.deleteProductOnWarehouse(warehouseId, productId);
-        model.addAttribute("warehouses", warService.getWarehouses());
-        return allWare(model);
+        return "warehouses";
     }
 
     @GetMapping("/deletewarehouse/{id}")
@@ -99,7 +83,7 @@ public class WarehouseController {
         if (newWarehouse.getName()!=null && !"".equals(newWarehouse.getName())){
             warService.updateWarehouse(newWarehouse);
         } else {
-            return "erroreWarehouse";
+            return "erroreEditWarehouse";
         }
         model.addAttribute("warehouses", warService.getWarehouses());
         return allWare(model);
