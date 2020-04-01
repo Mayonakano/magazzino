@@ -6,19 +6,18 @@
 </head>
 <body>
     <h1>Subcategories</h1>
-    <a th:href="@{/magazzino}">
-        <button>Home</button>
-    </a>
+    <span><a th:href="@{/magazzino}"><button>Home</button></a></span> &nbsp &nbsp
+    <span><a th:href="@{/magazzino/addsubcategory}"><button>Inserisci una nuova Sottocategoria</button></a></span>
 <ul>
     <li th:each="subcategory : ${subcategories}">
-        <p>Id: <span th:text="${subcategory.id}"></span></p>
-        <p>Nome: <span th:text="${subcategory.name}"></span> </p>
-        <p>Descrizione: <span th:text="${subcategory.description}"></span></p>
-        <p>Nome categoria: <span th:text="${subcategory.category.name}"></span></p>
-        <p>Tassa categoria: <span th:text="${subcategory.category.tax}"></span></p>
+        Nome: <span th:text="${subcategory.name}"></span>,
+        Descrizione: <span th:text="${subcategory.description}"></span>,
+        Nome categoria: <span th:text="${subcategory.category.name}"></span>,
+        Tassa categoria: <span th:text="${subcategory.category.tax}">%</span>;
         <br>
 <span><a th:href="@{/magazzino/deletesubcategory/{id}(id=${subcategory.id})}"><button onclick="return confirm('Sei sicuro/a di volerla eliminare?')">Elimina</button></a></span>
 <span><a th:href="@{/magazzino/editsubcategory/{id}(id=${subcategory.id})}"><button onclick="return confirm('Sei sicuro/a di volerla modificare?')">Modifica</button></a></span>
+        <br>
     </li>
 </ul>
 </body>

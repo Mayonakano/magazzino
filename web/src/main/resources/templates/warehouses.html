@@ -6,14 +6,16 @@
 </head>
 <body>
 <h1>Ecco l'elenco dei magazzini esistenti</h1>
-    <span><a th:href="@{/magazzino}"><button>Homepage</button></a></span> &nbsp
+    <span><a th:href="@{/magazzino}"><button>Homepage</button></a></span> &nbsp &nbsp
     <span><a th:href="@{/magazzino/addwarehouse}"><button>Aggiungi un magazzino</button></a></span>
     <ul>
         <li th:each="warehouse : ${warehouses}">
-        <p>Nome: <span th:text="${warehouse.name}"></span></p>
+        Nome: <span th:text="${warehouse.name}"></span> <br>
 <!--            <a th:href="@{/magazzino/warehouse/{id}(id = ${warehouse.id})}">  -->
         <span><a th:href="@{/magazzino/deletewarehouse/{id}(id=${warehouse.id})}"><button>Elimina</button></a></span> &nbsp
         <span><a th:href="@{/magazzino/editwarehouse/{id}(id=${warehouse.id})}"><button>Modifica</button></a></span>
+            <br>
+            <br>
         </li>
     </ul>
 </body>

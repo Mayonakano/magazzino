@@ -5,8 +5,8 @@
 
 <body>
 <h1>Lista Prodotti</h1>
-    <a th:href="@{/magazzino}"> <button>Home</button>
-    </a>
+    <span><a th:href="@{/magazzino}"> <button>Home</button></a></span> &nbsp &nbsp
+    <span><a th:href="@{/magazzino/addproduct}"><button>Inserisci un nuovo Prodotto</button></a></span>
 <ul>
     <li th:each="product : ${products}">Nome Prodotto:
         <span th:text="${product.name}"></span>, Nome sottocategoria:

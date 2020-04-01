@@ -54,10 +54,12 @@ public class WarehouseController {
 
     @PostMapping("/addwarehouse")
     public String addWarehouse(@ModelAttribute Warehouse warehouse, Model model) {
-        if(null!=warehouse.getName() && !"".equals(warehouse.getName())) {
-            warService.addWarehouse(warehouse);
-        } else {
+        if(warehouse.getName() == null || "".equals(warehouse.getName()) || " ".equals(warehouse.getName())) {
             return "erroreAddWarehouse";
+        } else if (warService.alreadyExist(warehouse)) {
+            return "copyAddWarehouse";
+        } else {
+             warService.addWarehouse(warehouse);
         }
         model.addAttribute("warehouses", warService.getWarehouses());
         return "warehouses";
@@ -80,10 +82,12 @@ public class WarehouseController {
 
     @PostMapping("/editwarehouse")
     public String saveEditWarehouse (@ModelAttribute Warehouse newWarehouse, Model model) {
-        if (newWarehouse.getName()!=null && !" ".equals(newWarehouse.getName()) && !"".equals(newWarehouse.getName())){
-            warService.updateWarehouse(newWarehouse);
-        } else {
+        if (newWarehouse.getName().equals(null) || "".equals(newWarehouse.getName()) || " ".equals(newWarehouse.getName())){
             return "erroreEditWarehouse";
+        } else if (warService.getWarehouses().contains(newWarehouse)) {
+            return "copyEditWarehouse";
+        } else {
+            warService.addWarehouse(newWarehouse);
         }
         model.addAttribute("warehouses", warService.getWarehouses());
         return allWare(model);

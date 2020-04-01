@@ -2,7 +2,6 @@ package com.rgi.controller.product;
 
 import com.rgi.model.product.Product;
 import com.rgi.model.subcategory.Subcategory;
-import com.rgi.model.warehouse.Warehouse;
 import com.rgi.service.product.ProductService;
 import com.rgi.service.subcategory.SubcategoryService;
 import com.rgi.service.warehouse.WarehouseService;
@@ -10,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,11 +58,12 @@ public class ProductController {
      public String addOne(@ModelAttribute Product newProduct, Model model) {
          Subcategory subcategory = subcategoryService.subcategory(newProduct.getSubcategory().getId()).orElse(null);
          newProduct.setSubcategory(subcategory);
-         if (newProduct.getName() != null && !" ".equals(newProduct.getName()) && newProduct.getSubcategory() != null
-                 && newProduct.getShortDescription() != null && !" ".equals(newProduct.getShortDescription())) {
-             service.addProduct(newProduct);
-         } else {
+         if (newProduct.getName() == null || " ".equals(newProduct.getName()) || "".equals(newProduct.getName()) ||
+                 newProduct.getSubcategory() == null || newProduct.getShortDescription() == null
+                 || " ".equals(newProduct.getShortDescription()) || "".equals(newProduct.getShortDescription())) {
              return "erroreAddProduct";
+            } else {
+              service.addProduct(newProduct);
          }
          model.addAttribute("products", service.products());
          return products(model);
@@ -73,7 +73,7 @@ public class ProductController {
         public String deleteOne(@PathVariable long id, Model model) {
         service.deleteProduct(id);
         model.addAttribute("products", service.products());
-        return products(model);
+        return "products";
      }
 
      @GetMapping("/editproduct/{id}")
@@ -86,12 +86,22 @@ public class ProductController {
 
      @PostMapping("/editproduct")
      public String saveEditProduct (@ModelAttribute Product newProduct, Model model) {
-         if (newProduct.getName() != null && !" ".equals(newProduct.getName()) && newProduct.getSubcategory() != null
-                     && newProduct.getShortDescription() != null && !" ".equals(newProduct.getShortDescription())) {
-                 service.updateProduct(newProduct);
-             } else {
+         if (newProduct.getName().equals(null) || " ".equals(newProduct.getName()) || "".equals(newProduct.getName()) ||
+                 newProduct.getSubcategory().equals(null) || newProduct.getShortDescription().equals(null)
+                 || " ".equals(newProduct.getShortDescription()) || "".equals(newProduct.getShortDescription())) {
                  return "erroreEditProduct";
+            } else if (service.products().contains(newProduct)) {
+             List<Product> productList = (List<Product>)service.products();
+             for(Product p : productList) {
+                 if(p.getName().equals(newProduct.getName())) {
+                     p.setQuantity(p.getQuantity() + newProduct.getQuantity());
+                     break;
+                 }
              }
+             return products(model);
+            } else {
+             service.updateProduct(newProduct);
+            }
          return products(model);
      }
 }

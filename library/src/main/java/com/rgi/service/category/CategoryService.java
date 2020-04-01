@@ -3,7 +3,6 @@ package com.rgi.service.category;
 import com.rgi.dao.category.CategoryRepository;
 import com.rgi.model.category.Category;
 
-import com.rgi.model.product.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,9 +20,8 @@ public class CategoryService {
 
 
     public Collection<? extends Category> categories() {
-
-        return (Collection<? extends Category>) repository.findAll();
-
+        List<Category> categoryList = (List<Category>) repository.findAll();
+        return categoryList;
     }
 
 
@@ -48,6 +46,12 @@ public class CategoryService {
         category.ifPresent(value -> repository.delete(value));
     }
 
-
-
+    public boolean alreadyExist (Category category) {
+        for (Category c : categories()) {
+            if (c.getName().equalsIgnoreCase(category.getName()) && c.getTax() == category.getTax()) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

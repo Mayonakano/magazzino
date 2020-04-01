@@ -34,11 +34,15 @@ public class CategoryController {
 
     @PostMapping("/newcategory")
     public String addOne(@ModelAttribute Category newCategory, Model model) {
-            if (newCategory.getName()!=null && !" ".equals(newCategory.getName()) && newCategory.getTax()>0) {
-                categoryService.addCategory(newCategory);
-            } else  {
+      List<Category> categoryList = (List<Category>) categoryService.categories();
+        if (newCategory.getName().equals(null) || " ".equals(newCategory.getName())
+              || "".equals(newCategory.getName()) || newCategory.getTax()<=0) {
                 return "erroreAddCategory";
-            }
+        } else if (categoryService.alreadyExist(newCategory)) {
+                return "copyAddCategory";
+        } else {
+                categoryService.addCategory(newCategory);
+        }
         return categories(model);
     }
 
@@ -52,10 +56,12 @@ public class CategoryController {
     @PostMapping("/savecategory")
     public String saveCategory (@ModelAttribute Category editCategory, Model model) {
         Category c = editCategory;
-        if(c.getName()!=null && !" ".equals(c.getName()) && c.getTax()>0) {
-            categoryService.updateCategory(c);
-        } else {
+        if(c.getName().equals(null) || " ".equals(c.getName()) || "".equals(c.getName()) || c.getTax()<=0) {
             return "erroreEditCategory";
+        } else if(categoryService.categories().contains(c)) {
+            return "copyEditCategory";
+            } else {
+            categoryService.updateCategory(c);
         }
         return categories(model);
     }

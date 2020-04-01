@@ -43,13 +43,35 @@ public class ProductService {
     }
 
     public void updateProduct(Product product) {
-        Optional<Product> toDelete = product(product.getId());
-        toDelete.ifPresent(c -> repository.save(product));
+        List<Product> productList = (List<Product>) products();
+        boolean finished = false;
+        for (int i = 0; i < productList.size(); i++) {
+            Product p = productList.get(i);
+            if (p.getName().equalsIgnoreCase(product.getName()) && p.getShortDescription().equalsIgnoreCase(product.getShortDescription())
+                    && p.getSubcategory().equals(product.getSubcategory())) {
+                p.setQuantity(p.getQuantity() + product.getQuantity());
+                repository.save(p);
+                finished = true;
+            }
+        }
+        if (!finished) {
+            repository.save(product);
+        }
     }
 
     public void deleteProduct(long id) {
         Optional<Product> product = product(id);
         product.ifPresent(value -> repository.delete(value));
+    }
+
+    public boolean alreadyExist (Product product) {
+        for (Product p : products()) {
+            if (p.getName().equalsIgnoreCase(product.getName()) && p.getSubcategory().equals(product.getSubcategory()) &&
+                p.getBasePrice()==product.getBasePrice()) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

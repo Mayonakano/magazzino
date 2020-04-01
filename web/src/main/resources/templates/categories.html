@@ -6,19 +6,17 @@
 </head>
 <body>
     <h1>Categories</h1>
-    <a th:href="@{/magazzino}"> <button>Home</button>
-    </a>
+    <span><a th:href="@{/magazzino}"> <button>Home</button></a></span> &nbsp &nbsp
+    <span><a th:href="@{/magazzino/addcategory}"><button>Inserisci una nuova Categoria</button></a></span>
 <ul>
     <li th:each="category : ${categories}">
-        <p>Id: <span th:text="${category.id}"></span></p>
-        <p>Nome:
-        <span th:text="${category.name}"></span>
-        </p>
-        <p> Tassa:
-        <span th:text="${category.tax}"></span>
-        </p>
+        Nome: <span th:text="${category.name}"></span>,
+        Tassa: <span th:text="${category.tax}">%</span>
+        <br>
 <span><a th:href="@{/magazzino/deletecategory/{id}(id=${category.id})}"><button onclick="return confirm('Sei sicuro/a di volerla eliminare?')">Elimina</button></a></span> &nbsp
 <span><a th:href="@{/magazzino/editcategory/{id}(id=${category.id})}"><button onclick="return confirm('Sei sicuro/a di volerla modificare?')">Modifica</button></a></span>
+        <br>
+        <br>
     </li>
 </ul>
 </body>

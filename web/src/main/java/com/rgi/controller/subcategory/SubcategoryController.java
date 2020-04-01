@@ -41,11 +41,14 @@ public class SubcategoryController {
     public String addOne(@ModelAttribute Subcategory newSubcategory, Model model) {
         Category category = cateService.category(newSubcategory.getCategory().getId()).orElse(null);
         newSubcategory.setCategory(category);
-        if(newSubcategory.getName()!= null && !" ".equals(newSubcategory.getName()) && newSubcategory.getCategory()!=null &&
-                !" ".equals(newSubcategory.getDescription()) && newSubcategory.getDescription()!=null) {
-            subService.addSubcategory(newSubcategory);
-        } else {
+        if(newSubcategory.getName() == null || "".equals(newSubcategory.getName()) || " ".equals(newSubcategory.getName()) ||
+                newSubcategory.getCategory() == null || " ".equals(newSubcategory.getDescription()) ||
+                "".equals(newSubcategory.getDescription()) || newSubcategory.getDescription() == null) {
             return "erroreAddSubcategory";
+        } else if (subService.alreadyExist(newSubcategory)) {
+                    return "copyAddSubcategory";
+        } else {
+             subService.addSubcategory(newSubcategory);
         }
         model.addAttribute("subcategories", subService.subcategories());
         return subcategories(model);
@@ -62,11 +65,14 @@ public class SubcategoryController {
     @PostMapping("/savesubcategory")
     public String saveSubcategoty (@ModelAttribute Subcategory saveSubcategory, Model model) {
         Subcategory s = saveSubcategory;
-        if(s.getName()!=null && !" ".equals(s.getName()) && s.getDescription()!=null &&
-                !" ".equals(s.getDescription()) && s.getCategory()!=null) {
-            subService.updateSubcategory(s);
-        } else {
+        if(s.getName() == null || "".equals(s.getName()) || " ".equals(s.getName()) ||
+                s.getCategory() == null || " ".equals(s.getDescription()) ||
+                "".equals(s.getDescription()) || s.getDescription() == null) {
             return "erroreEditSubcategory";
+        } else if(subService.subcategories().contains(s)) {
+            return "copyEditSubcategory";
+        } else {
+             subService.updateSubcategory(s);
         }
         return subcategories(model);
     }

@@ -2,6 +2,7 @@ package com.rgi.service.warehouse;
 
 import com.rgi.dao.product.ProductRepository;
 import com.rgi.dao.warehouse.WarehouseRepository;
+import com.rgi.model.category.Category;
 import com.rgi.model.product.Product;
 import com.rgi.model.warehouse.Warehouse;
 import com.rgi.service.product.ProductService;
@@ -50,6 +51,15 @@ public class WarehouseService {
     public void updateWarehouse (Warehouse warehouse) {
         Optional<Warehouse> toModify = getWarehouse(warehouse.getId());
         toModify.ifPresent(m -> warRepo.save(warehouse));
+    }
+
+    public boolean alreadyExist (Warehouse warehouse) {
+        for (Warehouse w : getWarehouses()) {
+            if (w.getName().equalsIgnoreCase(warehouse.getName())) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

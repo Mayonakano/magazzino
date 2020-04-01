@@ -17,7 +17,7 @@
     <option th:each="cate : ${categories}" th:value="${cate.id}" th:text="${cate.name}" required="required"></option>
     </select> <br>
     <p>Descrizione Prodotto:</p> <br>
-    <textarea id="${editProduct.shortDescription}" th.value="${editProduct.shortDescription}"cols="40" rows="10" required="required"></textarea><br>
+    <input th:field=${editProduct.shortDescription}" th:value="${editProduct.shortDescription}" required="required"><br>
     <p>Prezzo Base: <input type="text" th:value="${editProduct.basePrice}"th:field="${editProduct.basePrice}" required="required"></p> <br>
     <p>Quantità: <input type="number" th:value="${editProduct.quantity}" th:field="${editProduct.quantity}" required="required"></p> <br>
     <button type="submit" onclick="return confirm('Sei sicuro/a di volerlo modificare?')">Conferma la Modifica</button>

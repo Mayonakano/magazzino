@@ -1,6 +1,7 @@
 package com.rgi.service.subcategory;
 
 import com.rgi.dao.subcategory.SubcategoryRepository;
+import com.rgi.model.category.Category;
 import com.rgi.model.subcategory.Subcategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,5 +39,14 @@ public class SubcategoryService {
     public void deleteSubcategory(long id) {
         Optional<Subcategory> subcategory = subcategory(id);
         subcategory.ifPresent(sub -> repo.delete(sub));
+    }
+
+    public boolean alreadyExist (Subcategory subcategory) {
+        for (Subcategory s : subcategories()) {
+            if (s.getName().equalsIgnoreCase(subcategory.getName()) && s.getCategory().equals(subcategory.getCategory())) {
+                return true;
+            }
+        }
+        return false;
     }
 }
