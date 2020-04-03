@@ -58,9 +58,9 @@ public class ProductController {
      public String addOne(@ModelAttribute Product newProduct, Model model) {
          Subcategory subcategory = subcategoryService.subcategory(newProduct.getSubcategory().getId()).orElse(null);
          newProduct.setSubcategory(subcategory);
-         if (newProduct.getName() == null || " ".equals(newProduct.getName()) || "".equals(newProduct.getName()) ||
-                 newProduct.getSubcategory() == null || newProduct.getShortDescription() == null
-                 || " ".equals(newProduct.getShortDescription()) || "".equals(newProduct.getShortDescription())) {
+         newProduct.getName().trim();
+         newProduct.getShortDescription().trim();
+         if (newProduct.getName() == null || newProduct.getSubcategory() == null || newProduct.getShortDescription() == null) {
              return "erroreAddProduct";
             } else {
               service.addProduct(newProduct);
@@ -86,19 +86,11 @@ public class ProductController {
 
      @PostMapping("/editproduct")
      public String saveEditProduct (@ModelAttribute Product newProduct, Model model) {
-         if (newProduct.getName().equals(null) || " ".equals(newProduct.getName()) || "".equals(newProduct.getName()) ||
-                 newProduct.getSubcategory().equals(null) || newProduct.getShortDescription().equals(null)
-                 || " ".equals(newProduct.getShortDescription()) || "".equals(newProduct.getShortDescription())) {
+         newProduct.getName().trim();
+         newProduct.getShortDescription().trim();
+         if (newProduct.getName().equals(null) || newProduct.getSubcategory().equals(null)
+                 || newProduct.getShortDescription().equals(null) || newProduct.getBasePrice()<=0 || newProduct.getQuantity()<=0) {
                  return "erroreEditProduct";
-            } else if (service.products().contains(newProduct)) {
-             List<Product> productList = (List<Product>)service.products();
-             for(Product p : productList) {
-                 if(p.getName().equals(newProduct.getName())) {
-                     p.setQuantity(p.getQuantity() + newProduct.getQuantity());
-                     break;
-                 }
-             }
-             return products(model);
             } else {
              service.updateProduct(newProduct);
             }

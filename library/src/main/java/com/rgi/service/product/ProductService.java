@@ -35,6 +35,7 @@ public class ProductService {
                 p.setQuantity(p.getQuantity() + product.getQuantity());
                 repository.save(p);
                 finished = true;
+                break;
             }
         }
         if (!finished) {

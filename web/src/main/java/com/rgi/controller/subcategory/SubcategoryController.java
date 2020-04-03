@@ -41,9 +41,9 @@ public class SubcategoryController {
     public String addOne(@ModelAttribute Subcategory newSubcategory, Model model) {
         Category category = cateService.category(newSubcategory.getCategory().getId()).orElse(null);
         newSubcategory.setCategory(category);
-        if(newSubcategory.getName() == null || "".equals(newSubcategory.getName()) || " ".equals(newSubcategory.getName()) ||
-                newSubcategory.getCategory() == null || " ".equals(newSubcategory.getDescription()) ||
-                "".equals(newSubcategory.getDescription()) || newSubcategory.getDescription() == null) {
+        newSubcategory.getName().trim();
+        newSubcategory.getDescription().trim();
+        if(newSubcategory.getName() == null || newSubcategory.getCategory() == null || newSubcategory.getDescription() == null) {
             return "erroreAddSubcategory";
         } else if (subService.alreadyExist(newSubcategory)) {
                     return "copyAddSubcategory";
@@ -65,11 +65,11 @@ public class SubcategoryController {
     @PostMapping("/savesubcategory")
     public String saveSubcategoty (@ModelAttribute Subcategory saveSubcategory, Model model) {
         Subcategory s = saveSubcategory;
-        if(s.getName() == null || "".equals(s.getName()) || " ".equals(s.getName()) ||
-                s.getCategory() == null || " ".equals(s.getDescription()) ||
-                "".equals(s.getDescription()) || s.getDescription() == null) {
+        s.getName().trim();
+        s.getDescription().trim();
+        if(s.getName() == null || s.getCategory() == null || s.getDescription() == null) {
             return "erroreEditSubcategory";
-        } else if(subService.subcategories().contains(s)) {
+        } else if(subService.alreadyExist(s)) {
             return "copyEditSubcategory";
         } else {
              subService.updateSubcategory(s);

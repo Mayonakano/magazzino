@@ -8,9 +8,28 @@
     <h1>Inserisci qui la nuova Categoria</h1>
     <a th:href="@{/magazzino}"><button>Home</button></a>
     <form th:action="@{/magazzino/newcategory}" method="post" th:object="${newCategory}">
-    <h4>Nome: <input type="text" th:field="${newCategory.name}" required="required"> </h4>
-    <p>Tassa: <input type="number" th:field="${newCategory.tax}" required="required"> </p>
-    <button type="submit" onclick="return confirm('Sei sicuro/a di volerla aggiungere?')">Aggiungi Categoria</button>
+    <h4>Nome: <input type="text" id='categoryName' th:field="${newCategory.name}"> </h4>
+    <p>Tassa: <input type="number" id='categoryTax' th:field="${newCategory.tax}"> </p>
+    <button type="submit" onclick=" return add()">Aggiungi Categoria</button>
     </form>
+    <script type="text/javascript">
+                function add() {
+                    var categoryName = document.getElementById("categoryName").trim();
+                    var categoryTax = document.getElementById("categoryTax");
+                    var r = confirm('Sei sicuro/a di volerla aggiungere?');
+                    if (r) {
+                        if (categoryName.value == undefined || categoryName.value == null || categoryName.value === " "
+                            || categoryTax.value<=0 || categoryTax.value == undefined
+                            || categoryTax.value == null) {
+                            alert('I dati non risultano inseriti correttamente');
+                            return false;
+                        } else {
+                            return true;
+                        }
+                    } else {
+                        return false;
+                    }
+                }
+    </script>
 </body>
 </html>

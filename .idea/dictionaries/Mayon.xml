@@ -2,12 +2,21 @@
   <dictionary name="Mayon">
     <words>
       <w>addcategory</w>
+      <w>aggiungere</w>
+      <w>compilare</w>
+      <w>correttamente</w>
+      <w>dati</w>
       <w>deletecategory</w>
       <w>deletewarehouse</w>
       <w>descrizione</w>
       <w>editcategory</w>
       <w>errore</w>
+      <w>inseriti</w>
+      <w>risultano</w>
+      <w>sicuro</w>
+      <w>sono</w>
       <w>subcate</w>
+      <w>volerla</w>
     </words>
   </dictionary>
 </component>
