@@ -6,8 +6,8 @@
 </head>
 <body>
     <h1>Inserisci il nuovo prodotto</h1>
-    <a th:href="@{/magazzino}"> <button>Home</button>
-    </a>
+    <span><a th:href="@{/magazzino}"> <button>Home</button></a></span> &nbsp &nbsp
+    <span><a th:href="@{/magazzino/products}"><button>Lista Prodotti</button></a> </span>
     <form th:action="@{/magazzino/newproduct}" method="post" th:object="${newProduct}">
         <p>Nome: <input type="text" th:field="${newProduct.name}" required="required"></p>
         Magazzino di Appartenenza:

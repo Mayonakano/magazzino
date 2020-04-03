@@ -6,9 +6,8 @@
 </head>
 <body>
     <h1>Inserisci un nuovo Magazzino</h1>
-    <a th:href="@{/magazzino}">
-        <button>Homepage</button>
-    </a>
+    <span><a th:href="@{/magazzino}"><button>Homepage</button></a></span> &nbsp &nbsp
+    <span><a th:href="@{/magazzino/warehouses}"><button>Lista Magazzini</button></a></span>
     <br>
     <br>
     <form th:action="@{/magazzino/addwarehouse}" method="post" th:object="${newWarehouse}">

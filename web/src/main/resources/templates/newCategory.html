@@ -6,7 +6,8 @@
 </head>
 <body>
     <h1>Inserisci qui la nuova Categoria</h1>
-    <a th:href="@{/magazzino}"><button>Home</button></a>
+    <span><a th:href="@{/magazzino}"><button>Home</button></a></span> &nbsp &nbsp
+    <span><a th:href="@{/magazzino/categories}"><button>Lista Categorie</button></a></span>
     <form th:action="@{/magazzino/newcategory}" method="post" th:object="${newCategory}">
     <h4>Nome: <input type="text" id='categoryName' th:field="${newCategory.name}"> </h4>
     <p>Tassa: <input type="number" id='categoryTax' th:field="${newCategory.tax}"> </p>

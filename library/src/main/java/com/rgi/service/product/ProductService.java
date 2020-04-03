@@ -2,8 +2,9 @@ package com.rgi.service.product;
 
 
 import com.rgi.dao.product.ProductRepository;
-import com.rgi.model.category.Category;
+import com.rgi.dao.warehouse.WarehouseRepository;
 import com.rgi.model.product.Product;
+import com.rgi.model.warehouse.Warehouse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,13 @@ public class ProductService {
 
     @Autowired
     private ProductRepository repository;
+    @Autowired
+    private WarehouseRepository repo;
+
+    public ProductService(ProductRepository repository, WarehouseRepository repo) {
+        this.repository = repository;
+        this.repo = repo;
+    }
 
     public Collection<? extends Product> products() {
         return (Collection<? extends Product>)repository.findAll();
@@ -39,6 +47,8 @@ public class ProductService {
             }
         }
         if (!finished) {
+            Warehouse warehouse = repo.findById(product.getWarehouse().getId()).orElse(null);
+            warehouse.getProducts().add(product);
             repository.save(product);
         }
     }
@@ -56,6 +66,8 @@ public class ProductService {
             }
         }
         if (!finished) {
+            Warehouse warehouse = repo.findById(product.getWarehouse().getId()).orElse(null);
+            warehouse.getProducts().add(product);
             repository.save(product);
         }
     }
