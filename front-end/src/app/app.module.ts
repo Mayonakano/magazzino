@@ -4,11 +4,13 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PersoneComponent } from './persone/persone.component';
+import { IndrizziComponent } from './indrizzi/indrizzi.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PersoneComponent
+    PersoneComponent,
+    IndrizziComponent
   ],
   imports: [
     BrowserModule,
