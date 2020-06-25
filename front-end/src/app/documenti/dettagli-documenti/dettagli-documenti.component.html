@@ -1,0 +1,15 @@
+<button [routerLink] = "['']"> home </button>
+<button [routerLink] = "['/documenti']"> lista </button>
+<p>dettagli-documento</p>
+<h2>dettaglio:</h2><br>
+<div *ngIf="!dettagliDoc">
+  caricamento...
+</div>
+<div *ngIf="dettagliDoc |async as c">
+  <p>Id: {{c.id}}</p>
+  <p>Tipologia: {{c.tipologia}}</p>
+  <p>File documento: {{c.fileDocumento}}</p>
+  <p>Numero documento: {{c.numeroDocumento}}</p>
+  <p>Scadenza documento: {{c.dataDiScadenzaDocumento}}</p>
+  <p>Persona: {{c.persona.nome}}</p>
+</div>

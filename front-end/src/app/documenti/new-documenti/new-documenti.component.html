@@ -1,0 +1,12 @@
+<h3>Inserisci nuovo documento</h3>
+<br>
+<br>
+<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+      Tipologia:          <input type="text" name="tipologia" placeholder="tipologia" ngModel>
+      File:               <input type="file" name="fileDocumento" placeholder="fileDocumento" ngModel>
+      Numero documento:   <input type="text" name="numeroDocumento" placeholder="numeroDocumento" ngModel>
+      Data di Scadenza:   <input type="date" name="dataDiScadenzaDocumento" placeholder="dataDiScadenzaDocumento" ngModel>
+      Persona:            <input type="text" name="persona" placeholder="persona" ngModel>
+      <button type="submit">Save</button>
+</form>
+

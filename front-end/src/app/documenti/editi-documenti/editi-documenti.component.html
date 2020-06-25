@@ -1,0 +1,8 @@
+<form #f='ngForm' (ngSubmit)= "onSubmit(f)">
+      Tipologia:          <input type="text" name="tipologia" [(ngModel)]="editDc.tipologia">
+      File:               <input type="file" name="fileDocumento" [(ngModel)]="editDc.fileDocumento">
+      Numero documento:   <input type="text" name="numeroDocumento" [(ngModel)]="editDc.numeroDocumento">
+      Data scadenza:      <input type="number" name="dataDiScadenzaDocumento" [(ngModel)]="editDc.dataDiScadenzaDocumento">
+      Persona:            <input type="text" name="persona" [(ngModel)]="editDc.persona">
+</form>
+
