@@ -1,8 +1,6 @@
-import { Data } from '@angular/router';
 import { Indirizzo } from './indirizzi/indirizzo.model';
 
-export interface Persona
-{
+export interface Persona {
   id?: number;
   nome: string;
   cognome: string;
@@ -14,5 +12,4 @@ export interface Persona
   categoriaProtetta: boolean;
   residenza: Indirizzo;
   domicilio: Indirizzo;
-
 }

@@ -12,7 +12,6 @@ import { DettagliPersoneComponent } from './persone/dettagli-persone/dettagli-pe
 import { NewPersoneComponent } from './persone/new-persone/new-persone.component';
 import { RapportiniComponent } from './rapportini/rapportini.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +23,7 @@ import { RapportiniComponent } from './rapportini/rapportini.component';
     DettagliPersoneComponent,
     NewPersoneComponent,
     NewPersoneComponent,
-    RapportiniComponent
+    RapportiniComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,9 +31,9 @@ import { RapportiniComponent } from './rapportini/rapportini.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

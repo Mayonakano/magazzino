@@ -13,8 +13,8 @@ export class DocumentoService {
 
   constructor(private http: HttpClient) {}
 
-  getAll(): Observable<Documento[]> {
-    return this.http.get<Documento[]>(this.apiDs);
+  getAllForIdPersona(id: number): Observable<Documento[]> {
+    return this.http.get<Documento[]>(`${this.apiDs}/all/${id}`);
   }
 
   getOne(id: number){
