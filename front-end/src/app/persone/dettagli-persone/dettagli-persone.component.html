@@ -1,11 +1,23 @@
-<button routerLink='/persone'>persone</button>
-<h2>dettaglio</h2>
+<button routerLink='/persone'> lista persone </button>
+<h2>profilo</h2>
 <div *ngIf="dettagliPer | async as  c">
-<p>Id: {{c.id}}</p>
-<p>Nome: {{c.nome}}</p>
-<p>Cognome: {{c.cognome}}</p>
-<p>Codice fiscale: {{c.codiceFiscale}}</p>
-<p>E-Mail: {{c.email}}</p>
-<p>Domicilio: {{c.domicilio.comune.comune}}</p>
-<p>Residenza: {{c.residenza.via}}</p>
+  <button routerLink='/rapportini/all/{{c.id}}'> i miei rapportini </button>
+  <p>Id: {{c.id}}</p>
+  <p>Nome: {{c.nome}}</p>
+  <p>Cognome: {{c.cognome}}</p>
+  <p>Codice fiscale: {{c.codiceFiscale}}</p>
+  <p>E-Mail: {{c.email}}</p>
+  <div>
+    <p>Domicilio: *saranno presenti due bottoni per visualizzare o nascondere gli indirizzi di domicilio e residenza</p>
+    <p>citta': {{c.domicilio.comune.comune}}</p>
+    <p>via: {{c.domicilio.via}}</p>
+    <p>specifiche: {{c.domicilio.specificaVia}}</p>
+    <p>cap: {{c.domicilio.cap}}</p>
+    <p>PROV: {{c.domicilio.comune.provincia.provincia}}</p>
+    <p>Regione: {{c.domicilio.comune.provincia.regione.regione}}</p>
+    <p>Stato: {{c.domicilio.comune.provincia.regione.stato.stato}}</p>
+  </div>
+  <div>
+    <p>Residenza: idem </p>
+  </div>
 </div>

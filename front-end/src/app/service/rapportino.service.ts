@@ -11,6 +11,10 @@ export class RapportinoService {
 
   constructor(private http: HttpClient) {}
 
+  getAll(): Observable<Rapportino[]>{
+    return this.http.get<Rapportino[]>(this.apiUrl);
+  }
+
   getAllForIdPersona(id: number): Observable<Rapportino[]> {
     return this.http.get<Rapportino[]>(`${this.apiUrl}/all/${id}`);
   }

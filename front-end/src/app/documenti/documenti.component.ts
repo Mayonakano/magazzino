@@ -12,12 +12,12 @@ export class DocumentiComponent implements OnInit,OnDestroy {
 
   listaDocumenti: Documento[];
   documentiSubscription: Subscription;
-
+  
   constructor(private service: DocumentoService) { }
 
 
   ngOnInit(){
-    this.documentiSubscription = this.service.getAll().subscribe(res =>{
+    this.documentiSubscription = this.service.getAllForIdPersona(1).subscribe(res =>{
       this.listaDocumenti = res;
     })
   }
@@ -35,13 +35,7 @@ export class DocumentiComponent implements OnInit,OnDestroy {
     })
     .catch(() =>{
       alert("Errore nel delete del documento");
-    }
-
-    )
-
-
-
-
+    });
   }
 
 }

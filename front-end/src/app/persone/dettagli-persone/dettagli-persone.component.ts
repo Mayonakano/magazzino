@@ -12,12 +12,18 @@ import { Persona } from 'src/app/model/persona.model';
 export class DettagliPersoneComponent implements OnInit {
 
   dettagliPer: Observable<Persona>
+  click:boolean;
 
   constructor(private service: PersonaService, private actRout: ActivatedRoute) { }
 
   ngOnInit(){
     const id = this.actRout.snapshot.params.id;
     this.dettagliPer = this.service.getOne(id);
+    this.click=false;
   }
 
+  showclick(click: boolean){
+    click=true;
+    console.log(click);
+  }
 }

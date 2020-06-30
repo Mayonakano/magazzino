@@ -1,1 +1,11 @@
-<p>rapportini works!</p>
+<h4>lista rapportini:</h4>
+<button [routerLink]="['/persone/dettaglio', id]" > il mio profilo </button>
+<li *ngFor="let rapportino of rapportini">
+  <span>
+    - mese di riferimento: {{rapportino.meseDiAppartenenza}} <br>
+    - {{rapportino.fileRapportino}} <br>
+    - data di upload: {{rapportino.dataDiUpload.toString().substring(0,10)}} <br>
+    ________________<br><br>
+  </span>
+ </li>
+

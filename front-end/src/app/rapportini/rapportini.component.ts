@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Rapportino } from '../model/rapportino.model';
 import { Subscription } from 'rxjs';
 import { RapportinoService } from '../service/rapportino.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-rapportini',
@@ -13,8 +14,8 @@ export class RapportiniComponent implements OnInit {
 
   rapportini: Rapportino[];
   sbRapportino: Subscription;
-
-  constructor(private service: RapportinoService) { }
+  id: number;
+  constructor(private service: RapportinoService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.getAll();
@@ -25,7 +26,9 @@ export class RapportiniComponent implements OnInit {
   }
 
   getAll(){
-    this.sbRapportino = this.service.getAll().subscribe( response => {
+    this.id= this.route.snapshot.params.id;
+    console.log('id: ',this.id);
+    this.sbRapportino = this.service.getAllForIdPersona(this.id).subscribe( response => {
       this.rapportini = response;
     });
   }
