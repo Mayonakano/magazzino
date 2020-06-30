@@ -1,4 +1,4 @@
-<p>dettagli-persone</p>
+<button routerLink='/persone'>persone</button>
 <h2>dettaglio</h2>
 <div *ngIf="dettagliPer | async as  c">
 <p>Id: {{c.id}}</p>
@@ -6,6 +6,6 @@
 <p>Cognome: {{c.cognome}}</p>
 <p>Codice fiscale: {{c.codiceFiscale}}</p>
 <p>E-Mail: {{c.email}}</p>
-<!-- <p>Domicilio: {{c.domicilio.qualcosa}}</p>
-<p>Residenza: {{c.residenza.qualcosa}}</p> -->
+<p>Domicilio: {{c.domicilio.comune.comune}}</p>
+<p>Residenza: {{c.residenza.via}}</p>
 </div>
