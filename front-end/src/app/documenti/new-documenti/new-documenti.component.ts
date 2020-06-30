@@ -16,11 +16,18 @@ export class NewDocumentiComponent implements OnInit {
   newDoc: Documento;
   form: FormGroup;
   persone: Persona[];
+  persona: Persona;
 
   constructor(private service: DocumentoService, private rout: Router, private serviceP: PersonaService, private route: ActivatedRoute) { }//qui ci andra' anche la service di Persona
 
 
+
   ngOnInit(){
+
+      const subPersone = this.serviceP.getAll().subscribe(res => {
+      this.persone= res;
+    });
+
   }
 
 

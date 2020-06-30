@@ -33,13 +33,11 @@ export class PersoneComponent implements OnInit,OnDestroy {
     .toPromise()
     .then(()=>{
       this.ngOnDestroy();
-    this.ngOnInit();
+      this.ngOnInit();
     })
     .catch(()=>{
       alert("errore in persona onDelete");
-    })
-
-
+    });
   }
 
 }

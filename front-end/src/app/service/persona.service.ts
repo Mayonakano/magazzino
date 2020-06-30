@@ -3,13 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Persona } from '../model/persona.model';
 
-export class PersonaService{
-
 @Injectable({
   providedIn: 'root'
 })
+export class PersonaService{
 
-apiPs = "http://localhost:8080/persona"
+apiPs = "http://localhost:8080/persona";
 
 constructor(private http: HttpClient){}
 
@@ -18,7 +17,7 @@ getAll(): Observable<Persona[]>{
 }
 
 getOne(id: number){
-  return this.http.get<Persona>(`${this.apiPs}/${id}`);//
+  return this.http.get<Persona>(`${this.apiPs}/${id}`);
 }
 
 delete(id: number){

@@ -2,11 +2,13 @@
 <br>
 <br>
 <form #f="ngForm" (ngSubmit)="onSubmit(f)">
-      Tipologia:          <input type="text" name="tipologia" placeholder="tipologia" ngModel>
-      File:               <input type="file" name="fileDocumento" placeholder="fileDocumento" ngModel>
-      Numero documento:   <input type="text" name="numeroDocumento" placeholder="numeroDocumento" ngModel>
-      Data di Scadenza:   <input type="date" name="dataDiScadenzaDocumento" placeholder="dataDiScadenzaDocumento" ngModel>
-      Persona:            <input type="text" name="persona" placeholder="persona" ngModel>
+      Tipologia:          <input type="text" name="tipologia" placeholder="tipologia" ngModel><br>
+      File:               <input type="file" name="fileDocumento" placeholder="fileDocumento" ngModel><br>
+      Numero documento:   <input type="text" name="numeroDocumento" placeholder="numeroDocumento" ngModel><br>
+      Data di Scadenza:   <input type="date" name="dataDiScadenzaDocumento" placeholder="dataDiScadenzaDocumento" ngModel><br>
+      Persona:            <select *ngFor='let persona of persone' name='persona'><br>
+                          <option [ngValue]='persona'>{{persona.nome}} {{persona.cognome}}</option>
+                          </select>
       <button type="submit">Save</button>
 </form>
 

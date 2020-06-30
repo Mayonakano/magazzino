@@ -8,7 +8,7 @@
 <div *ngIf="dettagliDoc |async as c">
   <p>Id: {{c.id}}</p>
   <p>Tipologia: {{c.tipologia}}</p>
-  <p>File documento: {{c.fileDocumento}}</p>
+  <p>File documento: {{c.fileDocumento.name}}</p>
   <p>Numero documento: {{c.numeroDocumento}}</p>
   <p>Scadenza documento: {{c.dataDiScadenzaDocumento}}</p>
   <p>Persona: {{c.persona.nome}}</p>
