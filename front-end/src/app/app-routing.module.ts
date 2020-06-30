@@ -6,6 +6,9 @@ import { NewDocumentiComponent } from './documenti/new-documenti/new-documenti.c
 import { PersoneComponent } from './persone/persone.component';
 import { DettagliPersoneComponent } from './persone/dettagli-persone/dettagli-persone.component';
 import { RapportiniComponent } from './rapportini/rapportini.component';
+import { HeaderComponent } from './header/header.component';
+import { LoginComponent } from './login/login.component';
+import { ErrorComponent } from './error/error.component';
 
 
 const routes: Routes = [
@@ -14,7 +17,11 @@ const routes: Routes = [
   {path: 'documenti/new', component: NewDocumentiComponent},
   {path: 'persone', component: PersoneComponent},
   {path: 'persone/dettaglio/:id', component: DettagliPersoneComponent},
-  {path: 'rapportini/all/:id', component: RapportiniComponent}
+  {path: 'rapportini/all/:id', component: RapportiniComponent},
+  {path: 'header', component: HeaderComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'error', component: ErrorComponent},
+  {path: 'logout', component: LoginComponent}
 ];
 
 @NgModule({

@@ -2,7 +2,7 @@
 <ul>
   <li *ngFor="let documento of listaDocumenti">
   <span [routerLink]="['dettaglio' , documento.id]">{{documento.fileDocumento}}</span>
-  <button (click)=onDelete(documento.id)>Elimina</button>
+  <button (click)= onDelete(documento.id)>Elimina</button>
   </li>
 </ul>
 

@@ -25,11 +25,11 @@ delete(id: number){
 }
 
 addOne(persona: Persona){
-  return this.http.post(`${this.apiPs}/add`,persona);
+  return this.http.post(this.apiPs + '/add',persona);
 }
 
 updateOne(persona: Persona){
-  return this.http.put(`${this.apiPs}/update`, persona);
+  return this.http.put(this.apiPs + '/update', persona);
 }
 
 }

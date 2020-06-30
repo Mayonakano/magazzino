@@ -1,7 +1,7 @@
 <h1>Lista Persone</h1>
 <ul>
   <li *ngFor="let persona of listaPersone">
-    <span [routerLink]="['dettaglio', persona.id]">{{persona.nome}}</span><br>
-    <button (click)=onDelete(persona.id)> DEL </button>
+    <span [routerLink]="['dettaglio', persona.id]">{{persona.nome}}</span>
+    <button (click)=onDelete(persona.id)>Elimina</button>
   </li>
 </ul>

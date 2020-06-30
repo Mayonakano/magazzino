@@ -36,7 +36,5 @@ export class NewPersoneComponent implements OnInit {
         comune: new FormControl('', [Validators.required])
       })
     });
-
   }
-
 }
