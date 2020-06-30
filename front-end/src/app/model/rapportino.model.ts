@@ -2,7 +2,7 @@ import { Persona } from './persona.model';
 
 export interface Rapportino{
   id: number;
-  fileRapportino: File;
+  fileRapportino: string;
   dataDiUpload: Date;
   persona: Persona;
 }

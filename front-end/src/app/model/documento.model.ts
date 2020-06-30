@@ -4,7 +4,7 @@ export interface Documento {
 
   id?: number;
   tipologia: string;
-  fileDocumento: File;
+  fileDocumento: string;
   numeroDocumento: string;
   dataDiScadenzaDocumento: Date;
   persona: Persona;

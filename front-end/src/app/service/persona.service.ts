@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Persona } from '../model/persona.model';
 
-export class PersonaService{
-
 @Injectable({
   providedIn: 'root'
 })
+export class PersonaService{
 
-apiPs = "http://localhost:8080/persona"
+
+
+apiPs = "http://localhost:8080/persone";
 
 constructor(private http: HttpClient){}
 
@@ -26,11 +27,11 @@ delete(id: number){
 }
 
 addOne(persona: Persona){
-  return this.http.post(`${this.apiPs}/add`,persona);
+  return this.http.post(this.apiPs + '/add',persona);
 }
 
 updateOne(persona: Persona){
-  return this.http.put(`${this.apiPs}/update`, persona);
+  return this.http.put(this.apiPs + '/update', persona);
 }
 
 }

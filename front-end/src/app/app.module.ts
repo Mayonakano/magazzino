@@ -11,6 +11,11 @@ import { PersoneComponent } from './persone/persone.component';
 import { DettagliPersoneComponent } from './persone/dettagli-persone/dettagli-persone.component';
 import { NewPersoneComponent } from './persone/new-persone/new-persone.component';
 import { RapportiniComponent } from './rapportini/rapportini.component';
+import { HeaderComponent } from './header/header.component';
+import { LoginComponent } from './login/login.component';
+import { ErrorComponent } from './error/error.component';
+import { LogoutComponent } from './logout/logout.component';
+
 
 
 @NgModule({
@@ -24,7 +29,11 @@ import { RapportiniComponent } from './rapportini/rapportini.component';
     DettagliPersoneComponent,
     NewPersoneComponent,
     NewPersoneComponent,
-    RapportiniComponent
+    RapportiniComponent,
+    HeaderComponent,
+    LoginComponent,
+    ErrorComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,13 @@
+#nav{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+#navbarTogglerDemo01{
+  background-color: #888;
+}
+
+
+
+

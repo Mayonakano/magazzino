@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import {  Subscription } from 'rxjs';
 import { Persona } from '../model/persona.model';
 import { PersonaService } from '../service/persona.service';
+import { IndirizziService } from '../service/indirizzi.service';
 
 @Component({
   selector: 'app-persone',
@@ -20,7 +20,7 @@ export class PersoneComponent implements OnInit,OnDestroy {
   ngOnInit(){
     this.personeSubscription = this.service.getAll().subscribe(res =>{
         this.listaPersone = res;
-    })
+    });
   }
 
   ngOnDestroy(){

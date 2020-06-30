@@ -1,11 +1,12 @@
 <p>dettagli-persone</p>
 <h2>dettaglio</h2>
 <div *ngIf="dettagliPer | async as  c">
+<p>{{c.foto}}</p>
 <p>Id: {{c.id}}</p>
 <p>Nome: {{c.nome}}</p>
 <p>Cognome: {{c.cognome}}</p>
 <p>Codice fiscale: {{c.codiceFiscale}}</p>
 <p>E-Mail: {{c.email}}</p>
-<!-- <p>Domicilio: {{c.domicilio.qualcosa}}</p>
-<p>Residenza: {{c.residenza.qualcosa}}</p> -->
+<p>Domicilio: {{c.domicilio}}</p>
+<p>Residenza: {{c.residenza}}</p>
 </div>
